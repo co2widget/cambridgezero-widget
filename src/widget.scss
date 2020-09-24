@@ -1,0 +1,38 @@
+//
+//	Base styling for CSS
+//	Use BEM at a single level to allow devs to style with higher specifity if required.
+//
+//	Need to review design 
+//
+
+.czw {
+	&__title {
+		&__text {
+
+		}
+	}
+
+	&__graph {
+
+	}
+
+	&__stats {
+		&__single {
+
+			&--avg {
+
+			}
+
+			&--increase {
+
+			}
+		}
+
+		&__label {
+
+		}
+		&__value {
+
+		}
+	}
+}
