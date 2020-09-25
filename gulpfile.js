@@ -5,15 +5,23 @@ var gulp = require('gulp'),
     postcss = require('gulp-postcss'),
     cssnano = require('cssnano'),
     rename = require('gulp-rename'),
+    plumber = require('gulp-plumber'),
     fs = require('fs');
 
 function scripts() {
     return gulp
         .src('./src/widget.js')
+        .pipe(plumber({
+            errorHandler: function (err) {
+                console.log(err.message);
+                this.emit('end');
+            }
+        }))
         .pipe(replace('{{css}}', function(s) {
             var style = fs.readFileSync('./build/widget.min.css', 'utf8');
             return '<style>' + style + '</style>';
         }))
+        .pipe(replace('{{url}}', 'http://widget.test/')) // Will need to find a way to update this based on location
         .pipe(terser())
         .pipe(rename({ suffix: '.min' }))
         .pipe(gulp.dest('./build'));

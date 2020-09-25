@@ -13,8 +13,12 @@ Run `npm install` once cloned
 `gulp script` will compile the JavaScript
 `gulp` will compile the JavaScript and stylesheet
 
+Copy `data.json` to `build/`
+
 ## Running on a server
-Need a cron task set up to execute `server.php` every 12 hours.
+Need a cron task set up to execute `server.php` every 6 hours.
+
+`0 */6 * * * php /path/to/server.php >/dev/null 2>&1`
 
 This will read the output file used and compare data if data has been updated the data in file will renew.
 
