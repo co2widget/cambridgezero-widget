@@ -53,7 +53,7 @@ fetch(url).then(function (r) {
  			<span class="czw__title__text">CO2</span>\
        </div>\
  		<div class="czw__graph">\
- 			${r.chart}
+ 			${decodeURIComponent(r.chart)}
  		</div>\
  		<div class="czw__stats">\
  			<div class="czw__stats__single czw__stats__single--avg">\
