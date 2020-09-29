@@ -24,7 +24,7 @@ This will read the output file used and compare data if data has been updated th
 
 ### TODO:
 - [x] Build tools (Gulp)
-- [ ] Data feed integration 
-- [ ] Implement design
-- [ ] Serve widget (this could be similar to https://wholegrain.gitlab.io/website-carbon-badges/ i.e. use JS to create output)
-- [ ] Feed updates - request data and update file(s)
+- [x] Data feed integration 
+- [ ] Implement design including axes labels
+- [x] Serve widget (this could be similar to https://wholegrain.gitlab.io/website-carbon-badges/ i.e. use JS to create output)
+- [x] Feed updates - request data and update file(s)
