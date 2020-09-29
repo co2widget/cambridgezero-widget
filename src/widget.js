@@ -35,7 +35,7 @@
 // Process data
 // Output HTML scructure in correct place with replaced values
 const css = '{{css}}';
-const url = '{{url}}/data.json';
+const url = '{{url}}/build/data.json';
 const widget = document.getElementById('czw');
 
 
@@ -46,7 +46,6 @@ fetch(url).then(function (r) {
     }
     return r.json();
 }).then(function (r) {
-	console.log(r);
     widget.insertAdjacentHTML('beforeEnd',css);
     widget.insertAdjacentHTML('beforeEnd',`<div id="czw" class="czw">\
  		<div class="czw__title">\
@@ -61,7 +60,7 @@ fetch(url).then(function (r) {
  				<span class="czw_stats__value">${r.average}</span>\
  			</div>\
  			<div class="czw__stats__single czw__stats__single--increase">\
- 				<span class="czw_stats__label"></span>\
+ 				<span class="czw_stats__label">In last 2 years</span>\
  				<span class="czw_stats__value">${r.change}</span>\
  			</div>\
  		</div>\

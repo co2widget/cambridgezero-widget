@@ -32,7 +32,7 @@ class Import {
 		// JSON encode for 
 		$return = json_encode([
 			'average' => Import::average($data),
-			'increase' => Import::increase($data),
+			'change' => Import::change($data),
 			'chart' => Import::chart($data),
 		]);
 
@@ -56,7 +56,7 @@ class Import {
 		return floatval(number_format($total/$x, 2, '.', ''));
 	}
 
-	private static function increase($data) {
+	private static function change($data) {
 		$data = array_reverse($data);
 
 		$latest = explode('),', $data[0]);
@@ -83,8 +83,13 @@ class Import {
 			$record = explode(',', $data[$x]);
 
 			// have year and value for each point
+			$year = intval($record[0]);
+
+			if ($year == 0) {
+				$year = 1010;
+			}
 			$points[] = [
-				intval($record[0]),
+				$year,
 				floatval($record[3])
 			];
 
@@ -113,9 +118,35 @@ class Import {
 		];
 
 
+		$offset = 10; // Prevent negative results
 
+		$first = $points[0];
+		// print_r($first);
+		$last = end($points);
 
-		return str_replace('+', ' ', urlencode('<svg viewBox="0 0 500 100" class="chart" preserveAspectRatio="none"><polyline fill="none" stroke="#0074d9" stroke-width="2" points="00,120 20,60 40,80 60,20 80,80 100,80 120,60 140,100 160,90 180,80 200, 110 220, 10 240, 70 260, 100 280, 100 300, 40 320, 0 340, 100 360, 100 380, 120 400, 60 420, 70 440, 80" vector-effect="non-scaling-stroke"></polyline></svg>'));
+		$width = count($points); // based on number of years
+		$height = $last[1] - $first[1] + $offset; // based on number of values
+
+		$x = 0;
+		$polyline = [];
+		foreach ($points as $key => $point) {
+			$y = $height - ($point[1] - $first[1]) - $offset;
+			$polyline[] = "${x},${y}";
+			$x++;
+		}
+		// print_r($polyline);
+
+		$y300 = $height - (300 - $first[1]) - $offset;
+		$y400 = $height - (400 - $first[1]) - $offset;
+
+		$y300 = "<line class=\"y300\" x1=\"0\" x2=\"${width}\" y1=\"${y300}\" y2=\"${y300}\" stroke=\"#0074d9\" stroke-width=\"1\" vector-effect=\"non-scaling-stroke\" id=\"y300\"></line>";
+
+		$y400 = "<line class=\"y400\" x1=\"0\" x2=\"${width}\" y1=\"${y400}\" y2=\"${y400}\" stroke=\"#0074d9\" stroke-width=\"1\" vector-effect=\"non-scaling-stroke\"id=\"y400\" ></line>";
+
+		$xaxis = "<line x1=\"0\" x2=\"${width}\" y1=\"${height}\" y2=\"${height}\" stroke=\"#0074d9\" stroke-width=\"1\" vector-effect=\"non-scaling-stroke\"id=\"y400\" ></line>";
+
+		ob_start(); ?><svg viewBox="0 0 <?= $width; ?> <?= $height; ?>" class="chart" preserveAspectRatio="none"><?= $y300; ?><?= $y400; ?><?= $xaxis; ?><polyline fill="none" stroke="#0074d9" stroke-width="2" points="<?= implode(' ', $polyline); ?>" vector-effect="non-scaling-stroke"></polyline></svg><?php 
+		return str_replace('+', ' ', urlencode(ob_get_clean()));
 	}
 
 	private static function save($path, $return) {
