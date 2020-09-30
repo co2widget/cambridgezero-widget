@@ -7,7 +7,7 @@
 
 .czw {
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-	
+	position: relative;
 	&__title {
 		&__text {
 
@@ -15,26 +15,30 @@
 	}
 
 	&__graph {
-
+		position: absolute;
+		width: 70%;
+		height: 20%;
+		top: 0;
+		left: 0;
 	}
 
 	&__stats {
 		&__single {
 
 			&--avg {
-
+				
 			}
 
 			&--increase {
-
+				
 			}
 		}
 
 		&__label {
-
+			
 		}
 		&__value {
-
+			background-color: blue;
 		}
 	}
 }

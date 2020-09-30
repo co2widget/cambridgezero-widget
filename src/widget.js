@@ -56,12 +56,12 @@ fetch(url).then(function (r) {
  		</div>\
  		<div class="czw__stats">\
  			<div class="czw__stats__single czw__stats__single--avg">\
- 				<span class="czw_stats__label">7-day average</span>\
- 				<span class="czw_stats__value">${r.average}</span>\
+ 				<p class="czw_stats__label">7-day average</p>\
+ 				<p class="czw_stats__value">${r.average}</p>\
  			</div>\
  			<div class="czw__stats__single czw__stats__single--increase">\
- 				<span class="czw_stats__label">In last 2 years</span>\
- 				<span class="czw_stats__value">${r.change}</span>\
+ 				<p class="czw_stats__label">In last 2 years</p>\
+ 				<p class="czw_stats__value">${r.change}</p>\
  			</div>\
  		</div>\
  	</div>`);
