@@ -64,9 +64,27 @@ fetch(url).then(function (r) {
  				<p class="czw_stats__value">${r.change}</p>\
  			</div>\
  		</div>\
- 	</div>`);
+	 </div>`);
+	 
+	// // use d3 select to find chart class and add axis?
+	// // add axis to chart
+	// var svg = d3.select('.chart')
+	// const x = d3.scaleTime().range([0, width]);
+	// var xAxis = d3.axisBottom(x)
+
+	// svg.append('g')
+    //         .attr('class', 'x axis')
+    //         .attr('transform', 'translate(0,' + height + ')')
+	// 		.call(xAxis)
+	// // add to html
+	// widget.insertAdjacentHTML('afterBegin', )	
+
 }).catch(function (e) {
 	// Handle error responses
     widget.innerHTML = 'No Result';
     console.log(e);
 });
+
+//const svg = document.getElementsByClassName('chart');
+
+

@@ -41,7 +41,7 @@
 		}
 
 		@media (max-width: 320px) {
-			width: 70%;
+			width: 80%;
 			height: 20%;
 		}
 
@@ -49,9 +49,11 @@
 		&__single {
 			
 			&--avg {
-				background-color: red;
+				background-color: #fc5a03;
 				flex: 1;
-				text-align: center;
+				text-align: left;
+				color: white;
+				padding-left: 5px;
 		
     	
 				
@@ -61,7 +63,9 @@
 			&--increase {
 				background-color: orange;
 				flex: 1;
-				text-align: center;
+				text-align: left;
+				color: black;
+				padding-left: 5px;
 			}
 		}
 
