@@ -12,6 +12,11 @@
 	justify-content: space-around;
 	height: 100%;
 	width: 100%;
+	@media (max-width: 740px) { 
+		flex-direction: column;
+		align-items: center;
+	}
+
 	&__title {
 		&__text {
 			width: 25%;
@@ -21,23 +26,42 @@
 	&__graph {
 		width: 50%;
 		padding: 10px;
-		
+		@media (max-width: 740px) { width: 70%;}
+		@media (max-width: 320px) { width: 80%;}
+
 	}
 
 	&__stats {
 		width: 25%;
 		display: flex;
 		flex-direction: column;
-		&__single {
+		@media (max-width: 740px) and (min-width: 320px) { 
+			flex-direction: row;
+			width: 70%;
+		}
 
+		@media (max-width: 320px) {
+			width: 70%;
+			height: 20%;
+		}
+
+		
+		&__single {
+			
 			&--avg {
 				background-color: red;
 				flex: 1;
+				text-align: center;
+		
+    	
+				
+    			
 			}
 
 			&--increase {
 				background-color: orange;
 				flex: 1;
+				text-align: center;
 			}
 		}
 
