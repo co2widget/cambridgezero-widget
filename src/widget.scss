@@ -8,13 +8,16 @@
 .czw {
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 	display: flex;
-	flex-direction: row;
-	justify-content: space-around;
-	height: 100%;
+	flex-direction: column;
+	align-items: center; // center column horizontally
 	width: 100%;
-	@media (max-width: 740px) { 
-		flex-direction: column;
-		align-items: center;
+	max-width: 600px;
+	
+	@media (min-width: 740px) { 
+		flex-direction: row;
+		align-items: stretch; // ensure row items fill columns
+		justify-content: space-around; // center widget horizontally
+		margin: 0 auto;	
 	}
 
 	&__title {
@@ -24,27 +27,31 @@
 	}
 
 	&__graph {
-		width: 50%;
-		padding: 10px;
-		@media (max-width: 740px) { width: 70%;}
-		@media (max-width: 320px) { width: 80%;}
-
+		width: 80%;
+		
+		@media (min-width: 320px) { 
+			width: 70%;
+		}
+		@media (min-width: 740px) { 
+			width: 50%;
+			padding: 10px;
+		}
 	}
 
 	&__stats {
-		width: 25%;
+		width: 80%;
 		display: flex;
 		flex-direction: column;
-		@media (max-width: 740px) and (min-width: 320px) { 
-			flex-direction: row;
+
+		@media (min-width: 320px) {
 			width: 70%;
+			flex-direction: row;
+			
 		}
-
-		@media (max-width: 320px) {
-			width: 80%;
-			height: 20%;
+		@media (min-width: 740px) {
+			width: 25%;
+			flex-direction: column;	
 		}
-
 		
 		&__single {
 			
@@ -54,10 +61,8 @@
 				text-align: left;
 				color: white;
 				padding-left: 5px;
-		
-    	
 				
-    			
+	
 			}
 
 			&--increase {
@@ -66,9 +71,10 @@
 				text-align: left;
 				color: black;
 				padding-left: 5px;
+
 			}
 		}
-
+		 
 		&__label {
 			
 		}
