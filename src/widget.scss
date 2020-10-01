@@ -46,8 +46,7 @@ $grey: #c0c0c0;
 
 	&__graph {
 		width: 100%;
-		 
-		display: flex; // &__labels only seems to position absolutely when display:flex?
+		display: flex; 
 		flex-direction: column;
 		flex-shrink: 0;
 		padding: 20px 20px 40px;
@@ -58,7 +57,6 @@ $grey: #c0c0c0;
 
 		&__wrapper {
 			position: relative;
-			display: flex; // &__labels only seems to position absolutely when display:flex?
 			height: 300px;
 			width: 100%;
 			svg {
@@ -149,9 +147,6 @@ $grey: #c0c0c0;
 			}
 		}
 		 
-		&__label {
-			
-		}
 		&__value {
 			margin-top: 10px;
 			font-size: 40px;
