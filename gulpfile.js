@@ -1,3 +1,5 @@
+require('custom-env').env(true);
+
 var gulp = require('gulp'),
     terser = require('gulp-terser'),
     replace = require('gulp-replace'),
@@ -21,7 +23,7 @@ function scripts() {
             var style = fs.readFileSync('./build/widget.min.css', 'utf8');
             return '<style>' + style + '</style>';
         }))
-        .pipe(replace('{{url}}', 'http://widget.test/')) // Will need to find a way to update this based on location
+        .pipe(replace('{{url}}', process.env.URL)) // Will need to find a way to update this based on location
         .pipe(terser())
         .pipe(rename({ suffix: '.min' }))
         .pipe(gulp.dest('./build'));

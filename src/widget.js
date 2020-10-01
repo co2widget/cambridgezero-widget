@@ -46,38 +46,47 @@ fetch(url).then(function (r) {
     }
     return r.json();
 }).then(function (r) {
+    const half = ((parseInt(r.year) - 1010) / 2) + 1010;
     widget.insertAdjacentHTML('beforeEnd',css);
-    widget.insertAdjacentHTML('beforeEnd',`<div id="czw" class="czw">\
- 		<div class="czw__title">\
- 			<span class="czw__title__text">CO2</span>\
+    widget.insertAdjacentHTML('beforeEnd',`<div class="czw__title">\
+ 			<span class="czw__title__text">CO<sub>2</sub></span>\
        </div>\
 		 <div class="czw__graph">\
-			 ${decodeURIComponent(r.chart)}
-			 <div class="czw__graph__labels">\
-			 	<div class="czw__graph__labels czw__graph__labels--y">\ 
-					 <p class="czw_graph__ylabel">400</p>\
-					 <p class="czw_graph__ylabel">300</p>\
-			 	</div>\ 
-				<div class="czw__graph__labels czw__graph__labels--x">\ 
-					 <p class="czw_graph__xlabel">1000</p>\
-					 <p class="czw_graph__xlabel">1500</p>\
-					 <p class="czw_graph__xlabel">Now</p>\
-				</div>\
-			 </div>\
+            <div class="czw__graph__wrapper">\
+    			 ${decodeURIComponent(r.chart)}
+    			 <div class="czw__graph__labels">\
+    			 	<div class="czw__graph__labels czw__graph__labels--y">\ 
+    					 <span class="czw__graph__labels__label czw_400">400</span>\
+    					 <span class="czw__graph__labels__label czw_300">300</span>\
+    			 	</div>\ 
+    				<div class="czw__graph__labels czw__graph__labels--x">\ 
+    					 <span class="czw__graph__labels__label czw__graph__labels__label--first">1010</span>\
+    					 <span class="czw__graph__labels__label czw__graph__labels__label--mid">${half}</span>\
+    					 <span class="czw__graph__labels__label  czw__graph__labels__label--end">Now</span>\
+    				</div>\
+    			 </div>\
+            </div>\
 		 </div>\
  		<div class="czw__stats">\
  			<div class="czw__stats__single czw__stats__single--avg">\
- 				<p class="czw_stats__label">7-day average</p>\
- 				<p class="czw_stats__value">${r.average}</p>\
+ 				<span class="czw__stats__label">7-day average</span>\
+ 				<span class="czw__stats__value">${r.average}</span>\
  			</div>\
  			<div class="czw__stats__single czw__stats__single--increase">\
- 				<p class="czw_stats__label">In last 2 years</p>\
- 				<p class="czw_stats__value">${r.change}</p>\
+ 				<span class="czw__stats__label">In last 2 years</span>\
+ 				<span class="czw__stats__value">${r.change}</span>\
  			</div>\
- 		</div>\
-	 </div>`);
-	 
+ 		</div>`);
 	
+    const svg = widget.getElementsByClassName('chart')[0];
+    const y400 = svg.getElementsByClassName('y400')[0];
+    const y300 = svg.getElementsByClassName('y300')[0];
+
+    const height = parseInt(svg.dataset.height);
+
+
+	widget.getElementsByClassName('czw_400')[0].style.bottom = parseInt(y400.getAttribute('y1')) / height * 100 + '%'
+    widget.getElementsByClassName('czw_300')[0].style.bottom = parseInt(y300.getAttribute('y1')) / height * 100 + '%'
 
 }).catch(function (e) {
 	// Handle error responses

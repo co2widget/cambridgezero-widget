@@ -23,6 +23,7 @@
   "homepage": "https://github.com/ChrisButterworth/cambridgezero-widget#readme",
   "devDependencies": {
     "cssnano": "^4.1.10",
+    "custom-env": "^2.0.1",
     "gulp": "^4.0.2",
     "gulp-markdown-github-style": "^1.1.1",
     "gulp-plumber": "^1.2.1",

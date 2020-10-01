@@ -34,6 +34,7 @@ class Import {
 			'average' => Import::average($data),
 			'change' => Import::change($data),
 			'chart' => Import::chart($data),
+			'year' => date('Y'), // Current year to get halfway point easier on chart
 		]);
 
 		//print_r($data);
@@ -140,13 +141,13 @@ class Import {
 		$y300 = $height - (300 - $first[1]) - $offset;
 		$y400 = $height - (400 - $first[1]) - $offset;
 
-		$y300 = "<line class=\"y300\" x1=\"0\" x2=\"${width}\" y1=\"${y300}\" y2=\"${y300}\" stroke=\"#0074d9\" stroke-width=\"1\" vector-effect=\"non-scaling-stroke\" id=\"y300\"></line>";
+		$y300 = "<line class=\"y300\" x1=\"0\" x2=\"${width}\" y1=\"${y300}\" y2=\"${y300}\" stroke=\"#c0c0c0\" stroke-width=\"1\" vector-effect=\"non-scaling-stroke\" id=\"y300\" stroke-dasharray=\"5,5\"></line>";
 
-		$y400 = "<line class=\"y400\" x1=\"0\" x2=\"${width}\" y1=\"${y400}\" y2=\"${y400}\" stroke=\"#0074d9\" stroke-width=\"1\" vector-effect=\"non-scaling-stroke\"id=\"y400\" ></line>";
+		$y400 = "<line class=\"y400\" x1=\"0\" x2=\"${width}\" y1=\"${y400}\" y2=\"${y400}\" stroke=\"#c0c0c0\" stroke-width=\"1\" vector-effect=\"non-scaling-stroke\"id=\"y400\" stroke-dasharray=\"5,5\"></line>";
 
-		$xaxis = "<line x1=\"0\" x2=\"${width}\" y1=\"${height}\" y2=\"${height}\" stroke=\"#0074d9\" stroke-width=\"1\" vector-effect=\"non-scaling-stroke\"id=\"y400\" ></line>";
+		$xaxis = "<line x1=\"0\" x2=\"${width}\" y1=\"${height}\" y2=\"${height}\" stroke=\"#0074d9\" stroke-width=\"1\" vector-effect=\"non-scaling-stroke\"id=\"y400\"></line>";
 
-		ob_start(); ?><svg viewBox="0 0 <?= $width; ?> <?= $height; ?>" class="chart" preserveAspectRatio="none"><?= $y300; ?><?= $y400; ?><?= $xaxis; ?><polyline fill="none" stroke="#0074d9" stroke-width="2" points="<?= implode(' ', $polyline); ?>" vector-effect="non-scaling-stroke"></polyline></svg><?php 
+		ob_start(); ?><svg viewBox="0 0 <?= $width; ?> <?= $height; ?>" data-height="<?= $height; ?>" class="chart" preserveAspectRatio="none"><?= $y300; ?><?= $y400; ?><?= $xaxis; ?><polyline fill="none" stroke="#d97400" stroke-width="3" points="<?= implode(' ', $polyline); ?>" vector-effect="non-scaling-stroke" stroke-linecap="round"></polyline></svg><?php 
 		return str_replace('+', ' ', urlencode(ob_get_clean()));
 	}
 
