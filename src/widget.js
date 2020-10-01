@@ -35,7 +35,7 @@
 // Process data
 // Output HTML scructure in correct place with replaced values
 const css = '{{css}}';
-const url = '{{url}}/data.json';
+const url = '{{url}}/build/data.json';
 const widget = document.getElementById('czw');
 
 
@@ -77,21 +77,7 @@ fetch(url).then(function (r) {
  		</div>\
 	 </div>`);
 	 
-	// use d3 select to find chart class and add axis?
-	// add axis to chart
 	
-
-
-
-	// const x = d3.scaleTime().range([0, width]);
-	// var xAxis = d3.axisBottom(x)
-
-	// svg.append('g')
-    //         .attr('class', 'x axis')
-    //         .attr('transform', 'translate(0,' + height + ')')
-	// 		.call(xAxis)
-	// // add to html
-	// widget.insertAdjacentHTML('afterBegin', )	
 
 }).catch(function (e) {
 	// Handle error responses
@@ -99,10 +85,4 @@ fetch(url).then(function (r) {
     console.log(e);
 });
 
-//const svg = document.getElementsByClassName('chart');
 
-// var svg = document.getElementsByClassName('chart');
-// var style = 
-// 	svg.append('text')
-// 		.attr('x', 0)
-// 		.attr('y', )
