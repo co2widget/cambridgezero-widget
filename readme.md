@@ -15,6 +15,8 @@ Run `npm install` once cloned
 
 Copy `data.json` to `build/`
 
+Duplicate `.env.sample` to `.env` and edit `URL` to match your environment
+
 ## Running on a server
 Need a cron task set up to execute `server.php` every 6 hours.
 
@@ -25,6 +27,6 @@ This will read the output file used and compare data if data has been updated th
 ### TODO:
 - [x] Build tools (Gulp)
 - [x] Data feed integration 
-- [ ] Implement design including axes labels
+- [x] Implement design including axes labels
 - [x] Serve widget (this could be similar to https://wholegrain.gitlab.io/website-carbon-badges/ i.e. use JS to create output)
 - [x] Feed updates - request data and update file(s)

@@ -5,94 +5,147 @@
 //	Need to review design 
 //
 
+$light-grey: #d0d0d0;
+$grey: #c0c0c0;
+
 .czw {
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 	display: flex;
 	flex-direction: column;
 	align-items: center; // center column horizontally
 	width: 100%;
-	max-width: 600px;
-	//position: relative; // absolute position here?
+	max-width: 880px;
+	overflow: hidden;
+	border: 1px solid $light-grey;
+	border-radius: 12px;
 	
 	@media (min-width: 740px) { 
 		flex-direction: row;
 		align-items: stretch; // ensure row items fill columns
-		justify-content: space-around; // center widget horizontally
+		justify-content: space-between; // center widget horizontally
 		margin: 0 auto;	
 	}
 
+	* {
+		box-sizing: border-box;
+	}
+
 	&__title {
+		width: 100%;
+		padding: 20px 20px;
+
+		@media (min-width: 740px) {
+			padding: 20px 40px;
+		}
+
 		&__text {
 			width: 25%;
+			font-size: 40px;
 		}
 	}
 
 	&__graph {
-		max-width: 300px; // prevent jump between screen size
-		width: 80%;
-		padding: 20px;
-		// position: relative; 
+		width: 100%;
+		 
 		display: flex; // &__labels only seems to position absolutely when display:flex?
 		flex-direction: column;
-		
-		
-		@media (min-width: 320px) { 
-			width: 70%;
-		}
+		flex-shrink: 0;
+		padding: 20px 20px 40px;
+
 		@media (min-width: 740px) { 
-			width: 50%;
+			width: 55%;
 		}
 
-
+		&__wrapper {
+			position: relative;
+			display: flex; // &__labels only seems to position absolutely when display:flex?
+			height: 300px;
+			width: 100%;
+			svg {
+				width: 100%;
+				height: 100%;
+			}
+		}
 		&__labels {
 			position: absolute; // position on top of chart
-			font-size: 1.3vw;
+			font-size: 12px;
+			height: 100%;
+			width: 100%;
 
 			&--x {
-				display: flex;
-				flex-direction: row;
-				margin-top: 150px;	
+				width: 100%;
+
+				.czw__graph__labels__label {
+					top: 100%;
+
+					&--first {
+						left: 0;
+					}
+
+					&--mid {
+						left: 50%;
+						transform: translateX(-50%);
+					}
+
+					&--end {
+						right: 0;
+					}
+				}
 			}
 
 			&--y {
-				
+				.czw__graph__labels__label {
+					transform: translateY(-250%);
+				    background: #fff;
+				    padding-right: 6px;
+				}
+			}
+
+			&__label {
+				position: absolute;
+				color: $grey;
 			}
 		}
 	}
 
 	&__stats {
-		max-width: 300px;
-		width: 80%;
+		
+		width: 100%;
 		display: flex;
 		flex-direction: column;
+		flex-shrink: 0;
 
 		@media (min-width: 320px) {
-			width: 70%;
 			flex-direction: row;
 			
 		}
 		@media (min-width: 740px) {
+			max-width: 300px;
 			width: 25%;
 			flex-direction: column;	
 		}
 		
 		&__single {
-			
+			display: flex;
+			flex-direction: column;
+			flex: 1;
+			align-items: center;
+			justify-content: center;
+			padding: 40px 20px;
+
+			@media (min-width: 740px) {
+				align-items: flex-start;
+				padding: 20px 40px;
+			}
+
 			&--avg {
 				background-color: #fc5a03;
-				flex: 1;
-				text-align: left;
 				color: white;
-				padding-left: 5px;
 			}
 
 			&--increase {
 				background-color: orange;
-				flex: 1;
-				text-align: left;
 				color: black;
-				padding-left: 5px;
-
 			}
 		}
 		 
@@ -100,7 +153,8 @@
 			
 		}
 		&__value {
-			
+			margin-top: 10px;
+			font-size: 40px;
 		}
 	}
 }
