@@ -35,7 +35,7 @@
 // Process data
 // Output HTML scructure in correct place with replaced values
 const css = '{{css}}';
-const url = '{{url}}/build/data.json';
+const url = '{{url}}/data.json';
 const widget = document.getElementById('czw');
 
 
@@ -51,9 +51,20 @@ fetch(url).then(function (r) {
  		<div class="czw__title">\
  			<span class="czw__title__text">CO2</span>\
        </div>\
- 		<div class="czw__graph">\
- 			${decodeURIComponent(r.chart)}
- 		</div>\
+		 <div class="czw__graph">\
+			 ${decodeURIComponent(r.chart)}
+			 <div class="czw__graph__labels">\
+			 	<div class="czw__graph__labels czw__graph__labels--y">\ 
+					 <p class="czw_graph__ylabel">400</p>\
+					 <p class="czw_graph__ylabel">300</p>\
+			 	</div>\ 
+				<div class="czw__graph__labels czw__graph__labels--x">\ 
+					 <p class="czw_graph__xlabel">1000</p>\
+					 <p class="czw_graph__xlabel">1500</p>\
+					 <p class="czw_graph__xlabel">Now</p>\
+				</div>\
+			 </div>\
+		 </div>\
  		<div class="czw__stats">\
  			<div class="czw__stats__single czw__stats__single--avg">\
  				<p class="czw_stats__label">7-day average</p>\
@@ -66,9 +77,12 @@ fetch(url).then(function (r) {
  		</div>\
 	 </div>`);
 	 
-	// // use d3 select to find chart class and add axis?
-	// // add axis to chart
-	// var svg = d3.select('.chart')
+	// use d3 select to find chart class and add axis?
+	// add axis to chart
+	
+
+
+
 	// const x = d3.scaleTime().range([0, width]);
 	// var xAxis = d3.axisBottom(x)
 
@@ -87,4 +101,8 @@ fetch(url).then(function (r) {
 
 //const svg = document.getElementsByClassName('chart');
 
-
+// var svg = document.getElementsByClassName('chart');
+// var style = 
+// 	svg.append('text')
+// 		.attr('x', 0)
+// 		.attr('y', )

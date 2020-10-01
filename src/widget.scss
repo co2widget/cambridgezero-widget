@@ -12,7 +12,7 @@
 	align-items: center; // center column horizontally
 	width: 100%;
 	max-width: 600px;
-	position: absolute; // absolute position here?
+	//position: relative; // absolute position here?
 	
 	@media (min-width: 740px) { 
 		flex-direction: row;
@@ -30,15 +30,33 @@
 	&__graph {
 		max-width: 300px; // prevent jump between screen size
 		width: 80%;
-
+		padding: 20px;
+		// position: relative; 
+		display: flex; // &__labels only seems to position absolutely when display:flex?
+		flex-direction: column;
+		
 		
 		@media (min-width: 320px) { 
-			
 			width: 70%;
 		}
 		@media (min-width: 740px) { 
 			width: 50%;
-			padding: 10px;
+		}
+
+
+		&__labels {
+			position: absolute; // position on top of chart
+			font-size: 1.3vw;
+
+			&--x {
+				display: flex;
+				flex-direction: row;
+				margin-top: 150px;	
+			}
+
+			&--y {
+				
+			}
 		}
 	}
 
