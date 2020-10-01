@@ -51,22 +51,38 @@ fetch(url).then(function (r) {
  		<div class="czw__title">\
  			<span class="czw__title__text">CO2</span>\
        </div>\
- 		<div class="czw__graph">\
- 			${decodeURIComponent(r.chart)}
- 		</div>\
+		 <div class="czw__graph">\
+			 ${decodeURIComponent(r.chart)}
+			 <div class="czw__graph__labels">\
+			 	<div class="czw__graph__labels czw__graph__labels--y">\ 
+					 <p class="czw_graph__ylabel">400</p>\
+					 <p class="czw_graph__ylabel">300</p>\
+			 	</div>\ 
+				<div class="czw__graph__labels czw__graph__labels--x">\ 
+					 <p class="czw_graph__xlabel">1000</p>\
+					 <p class="czw_graph__xlabel">1500</p>\
+					 <p class="czw_graph__xlabel">Now</p>\
+				</div>\
+			 </div>\
+		 </div>\
  		<div class="czw__stats">\
  			<div class="czw__stats__single czw__stats__single--avg">\
- 				<span class="czw_stats__label">7-day average</span>\
- 				<span class="czw_stats__value">${r.average}</span>\
+ 				<p class="czw_stats__label">7-day average</p>\
+ 				<p class="czw_stats__value">${r.average}</p>\
  			</div>\
  			<div class="czw__stats__single czw__stats__single--increase">\
- 				<span class="czw_stats__label">In last 2 years</span>\
- 				<span class="czw_stats__value">${r.change}</span>\
+ 				<p class="czw_stats__label">In last 2 years</p>\
+ 				<p class="czw_stats__value">${r.change}</p>\
  			</div>\
  		</div>\
- 	</div>`);
+	 </div>`);
+	 
+	
+
 }).catch(function (e) {
 	// Handle error responses
     widget.innerHTML = 'No Result';
     console.log(e);
 });
+
+

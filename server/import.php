@@ -36,6 +36,7 @@ class Import {
 			'chart' => Import::chart($data),
 		]);
 
+		//print_r($data);
 		echo $return;
 
 		Import::save($path, $return);
@@ -93,7 +94,7 @@ class Import {
 				floatval($record[3])
 			];
 
-
+			
 			// Logic to ensure each value is each 5 years
 			if ($x < 164) {
 				$x++;	

@@ -7,34 +7,100 @@
 
 .czw {
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	display: flex;
+	flex-direction: column;
+	align-items: center; // center column horizontally
+	width: 100%;
+	max-width: 600px;
+	//position: relative; // absolute position here?
 	
+	@media (min-width: 740px) { 
+		flex-direction: row;
+		align-items: stretch; // ensure row items fill columns
+		justify-content: space-around; // center widget horizontally
+		margin: 0 auto;	
+	}
+
 	&__title {
 		&__text {
-
+			width: 25%;
 		}
 	}
 
 	&__graph {
+		max-width: 300px; // prevent jump between screen size
+		width: 80%;
+		padding: 20px;
+		// position: relative; 
+		display: flex; // &__labels only seems to position absolutely when display:flex?
+		flex-direction: column;
+		
+		
+		@media (min-width: 320px) { 
+			width: 70%;
+		}
+		@media (min-width: 740px) { 
+			width: 50%;
+		}
 
+
+		&__labels {
+			position: absolute; // position on top of chart
+			font-size: 1.3vw;
+
+			&--x {
+				display: flex;
+				flex-direction: row;
+				margin-top: 150px;	
+			}
+
+			&--y {
+				
+			}
+		}
 	}
 
 	&__stats {
+		max-width: 300px;
+		width: 80%;
+		display: flex;
+		flex-direction: column;
+
+		@media (min-width: 320px) {
+			width: 70%;
+			flex-direction: row;
+			
+		}
+		@media (min-width: 740px) {
+			width: 25%;
+			flex-direction: column;	
+		}
+		
 		&__single {
-
+			
 			&--avg {
-
+				background-color: #fc5a03;
+				flex: 1;
+				text-align: left;
+				color: white;
+				padding-left: 5px;
 			}
 
 			&--increase {
+				background-color: orange;
+				flex: 1;
+				text-align: left;
+				color: black;
+				padding-left: 5px;
 
 			}
 		}
-
+		 
 		&__label {
-
+			
 		}
 		&__value {
-
+			
 		}
 	}
 }
