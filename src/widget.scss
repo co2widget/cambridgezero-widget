@@ -28,10 +28,12 @@
 	}
 
 	&__graph {
+		max-width: 300px; // prevent jump between screen size
 		width: 80%;
-		//position: absolute;
+
 		
 		@media (min-width: 320px) { 
+			
 			width: 70%;
 		}
 		@media (min-width: 740px) { 
@@ -41,6 +43,7 @@
 	}
 
 	&__stats {
+		max-width: 300px;
 		width: 80%;
 		display: flex;
 		flex-direction: column;
