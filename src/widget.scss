@@ -66,9 +66,11 @@ $grey: #c0c0c0;
 		}
 		&__labels {
 			position: absolute; // position on top of chart
-			font-size: 12px;
+			top: 0;
+			left: 0;
 			height: 100%;
 			width: 100%;
+			font-size: 12px;
 
 			&--x {
 				width: 100%;
