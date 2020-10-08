@@ -55,12 +55,12 @@ fetch(url).then(function (r) {
     			 ${decodeURIComponent(r.chart)}
     			 <div class="czw__graph__labels">\
     			 	<div class="czw__graph__labels czw__graph__labels--y">\ 
-    					 <span class="czw__graph__labels__label czw_400">300</span>\
-    					 <span class="czw__graph__labels__label czw_300">400</span>\
+    					 <span class="czw__graph__labels__label czw_400">300 ppm</span>\
+    					 <span class="czw__graph__labels__label czw_300">400 ppm</span>\
     			 	</div>\ 
     				<div class="czw__graph__labels czw__graph__labels--x">\ 
-    					 <span class="czw__graph__labels__label czw__graph__labels__label--first">1010</span>\
-    					 <span class="czw__graph__labels__label czw__graph__labels__label--mid">${half}</span>\
+    					 <span class="czw__graph__labels__label czw__graph__labels__label--first">1000 AD</span>\
+    					 <span class="czw__graph__labels__label czw__graph__labels__label--mid">1500 AD</span>\
     					 <span class="czw__graph__labels__label  czw__graph__labels__label--end">Now</span>\
     				</div>\
     			 </div>\
@@ -70,11 +70,11 @@ fetch(url).then(function (r) {
  		<div class="czw__stats">\
  			<div class="czw__stats__single czw__stats__single--avg">\
  				<span class="czw__stats__label">7-day average</span>\
- 				<span class="czw__stats__value">${r.average}</span>\
+ 				<span class="czw__stats__value">${r.average} ppm</span>\
  			</div>\
  			<div class="czw__stats__single czw__stats__single--increase">\
  				<span class="czw__stats__label">In last 2 years</span>\
- 				<span class="czw__stats__value">${r.change}</span>\
+ 				<span class="czw__stats__value">${r.change} ppm</span>\
  			</div>\
  		</div>`);
 	
