@@ -84,7 +84,6 @@ fetch(url).then(function (r) {
 
     const height = parseInt(svg.dataset.height);
 
-
 	widget.getElementsByClassName('czw_400')[0].style.bottom = parseInt(y400.getAttribute('y1')) / height * 100 + '%'
     widget.getElementsByClassName('czw_300')[0].style.bottom = parseInt(y300.getAttribute('y1')) / height * 100 + '%'
 

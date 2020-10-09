@@ -146,7 +146,7 @@ class Import {
 
 		$y400 = "<line class=\"y400\" x1=\"0\" x2=\"${width}\" y1=\"${y400}\" y2=\"${y400}\" stroke=\"#c0c0c0\" stroke-width=\"1\" vector-effect=\"non-scaling-stroke\"id=\"y400\" stroke-dasharray=\"5,5\"></line>";
 
-		$xaxis = "<line x1=\"0\" x2=\"${width}\" y1=\"${height}\" y2=\"${height}\" stroke=\"#003773\" stroke-width=\"1\" vector-effect=\"non-scaling-stroke\"id=\"y400\"></line>";
+		$xaxis = "<line x1=\"0\" x2=\"${width}\" y1=\"${height}\" y2=\"${height}\" stroke=\"#c0c0c0\" stroke-width=\"1\" vector-effect=\"non-scaling-stroke\"id=\"y400\"></line>";
 
 		ob_start(); ?><svg viewBox="0 0 <?= $width; ?> <?= $height; ?>" data-height="<?= $height; ?>" class="chart" preserveAspectRatio="none"><?= $y300; ?><?= $y400; ?><?= $xaxis; ?><polyline fill="none" stroke="#d97400" stroke-width="4" points="<?= implode(' ', $polyline); ?>" vector-effect="non-scaling-stroke" stroke-linecap="round"></polyline></svg><?php 
 		return str_replace('+', ' ', urlencode(ob_get_clean()));

@@ -19,7 +19,7 @@ $red: #d97400;
 	overflow: hidden;
 	border: 1px solid $light-grey;
 	border-radius: 12px;
-	font-size: 14px;
+	font-size: 16px;
 	
 	@media (min-width: 740px) { 
 		flex-direction: row;
@@ -45,7 +45,7 @@ $red: #d97400;
 		}
 
 		&__text {
-			font-size: 34px;
+			font-size: 36px;
 		}
 
 		&__date {
@@ -61,7 +61,7 @@ $red: #d97400;
 		padding: 20px 20px 40px;
 
 		@media (min-width: 740px) { 
-			width: 55%;
+			width: 52.5%;
 		}
 
 		&__wrapper {
@@ -86,7 +86,7 @@ $red: #d97400;
 
 				.czw__graph__labels__label {
 					top: 100%;
-					// color: #003773;
+					color: #003773;
 
 					&--first {
 						left: 0;
@@ -121,10 +121,10 @@ $red: #d97400;
 
 			position: absolute;
 			top: -3px;
-			right: -5px;
+			right: -2px;
 			display: block;
-			height: 16px;
-			width: 16px;
+			height: 9px;
+			width: 9px;
 
 			border: 2px solid $red;
 			border-radius: 50%;
@@ -162,7 +162,7 @@ $red: #d97400;
 
 			@media (min-width: 740px) {
 				align-items: flex-start;
-				padding: 20px 40px;
+				padding: 20px 30px;
 			}
 
 			&--avg {
@@ -182,7 +182,7 @@ $red: #d97400;
 
 		&__value {
 			margin-top: 10px;
-			font-size: 34px;
+			font-size: 36px;
 		}
 	}
 
