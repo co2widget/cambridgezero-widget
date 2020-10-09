@@ -10,6 +10,11 @@ $grey: #c0c0c0;
 $red: #d97400;
 
 .czw {
+	--title: 36px;
+	--label: 14px;
+
+
+
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 	display: flex;
 	flex-direction: column;
@@ -19,7 +24,7 @@ $red: #d97400;
 	overflow: hidden;
 	border: 1px solid $light-grey;
 	border-radius: 12px;
-	font-size: 16px;
+	font-size: var(--label);
 	
 	@media (min-width: 740px) { 
 		flex-direction: row;
@@ -45,7 +50,7 @@ $red: #d97400;
 		}
 
 		&__text {
-			font-size: 36px;
+			font-size: var(--title);
 		}
 
 		&__date {
@@ -79,7 +84,7 @@ $red: #d97400;
 			left: 0;
 			height: 100%;
 			width: 100%;
-			font-size: 12px;
+			// font-size: 12px;
 
 			&--x {
 				width: 100%;
@@ -105,7 +110,7 @@ $red: #d97400;
 
 			&--y {
 				.czw__graph__labels__label {
-					transform: translateY(-250%);
+					transform: translateY(-200%);
 				    background: #fff;
 				    padding-right: 6px;
 				}
@@ -182,7 +187,7 @@ $red: #d97400;
 
 		&__value {
 			margin-top: 10px;
-			font-size: 36px;
+			font-size: var(--title);
 		}
 	}
 
