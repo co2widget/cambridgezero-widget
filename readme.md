@@ -30,3 +30,7 @@ This will read the output file used and compare data if data has been updated th
 - [x] Implement design including axes labels
 - [x] Serve widget (this could be similar to https://wholegrain.gitlab.io/website-carbon-badges/ i.e. use JS to create output)
 - [x] Feed updates - request data and update file(s)
+- [ ] Integrate with Googles BigQuery - discuss methods
+- [ ] Host on Cambs Uni infrastructure - inline script fully
+- [ ] Update UI in line with new design
+- [ ] Host JSON file and server file on GCF

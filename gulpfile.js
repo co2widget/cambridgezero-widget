@@ -26,6 +26,7 @@ function scripts() {
 
         .pipe(replace(' \t', ''))
         .pipe(replace('\t', ''))
+        .pipe(replace('\n', ''))
         .pipe(replace('{{url}}', process.env.URL)) // Will need to find a way to update this based on location
         .pipe(terser())
         .pipe(rename({ suffix: '.min' }))
