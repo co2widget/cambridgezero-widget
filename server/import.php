@@ -71,9 +71,9 @@ class Import {
 
 
 		if ($change < 0) {
-			$char = '&darr;&nbsp;';
+			$char = '-';
 		} elseif ($change > 0) {
-			$char = '&uarr;&nbsp;';
+			$char = '+';
 
 		}
 		$change = number_format($change, 1, '.', '');
