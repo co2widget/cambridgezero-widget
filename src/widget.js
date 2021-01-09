@@ -75,6 +75,8 @@ fetch(url)
  			<div class="czw__stats__single czw__stats__single--avg">\
  				<span class="czw__stats__label">7-day average</span>\
  				<span class="czw__stats__value">${r.average} ppm</span>\
+			 </div>\
+			 <div class="czw__stats__single czw__stats__single--scale">\
  			</div>\
  			<div class="czw__stats__single czw__stats__single--increase">\
  				<span class="czw__stats__label">In last 2 years</span>\
@@ -99,5 +101,3 @@ fetch(url)
     widget.innerHTML = "No Result";
     console.log(e);
   });
-
-//  <span class="czw__graph__labels__label czw_400">300 ppm</span>\
