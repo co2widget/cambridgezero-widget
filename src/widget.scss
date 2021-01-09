@@ -85,7 +85,7 @@ $dark-grey: #3d3d3d;
         width: 50%;
         color: $dark-grey;
 
-        &--active {
+        &.active {
           display: flex;
           justify-content: center;
           align-items: center;

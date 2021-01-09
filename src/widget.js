@@ -55,7 +55,7 @@ fetch(url)
        </div>\
 		 <div class="czw__graph">\
 			 <div class="czw__graph__selector">\
-			 	<span class="czw__graph__selector__text--active">2000 yrs</span>\
+			 	<span class="czw__graph__selector__text active">2000 yrs</span>\
 				<span class="czw__graph__selector__text">20 yrs</span>\		 
 			 </div>\
             <div class="czw__graph__wrapper">\
@@ -88,7 +88,18 @@ fetch(url)
  		</div>`
     );
 
-    const svg = widget.getElementsByClassName("chart")[0];
+    const selectBtns = widget.getElementsByClassName(
+      "czw__graph__selector__text"
+    );
+
+    for (var i = 0; i < selectBtns.length; i++) {
+      selectBtns[i].addEventListener("click", function () {
+        var current = document.getElementsByClassName("active");
+        current[0].className = current[0].className.replace(" active", "");
+        this.className += " active";
+      });
+    }
+
     // const y400 = svg.getElementsByClassName("y400")[0];
     // const y300 = svg.getElementsByClassName("y300")[0];
 
@@ -104,5 +115,3 @@ fetch(url)
     widget.innerHTML = "No Result";
     console.log(e);
   });
-
-// <span class="czw__graph__selector__text">2000 yrs</span>\
