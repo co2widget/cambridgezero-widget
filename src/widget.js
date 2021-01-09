@@ -54,7 +54,10 @@ fetch(url)
             <span class="czw__title__date">${r.date}</span>\
        </div>\
 		 <div class="czw__graph">\
-		 	<div class="czw__graph__selector"></div>\
+			 <div class="czw__graph__selector">\
+			 	<span class="czw__graph__selector__text--active">2000 yrs</span>\
+				<span class="czw__graph__selector__text">20 yrs</span>\		 
+			 </div>\
             <div class="czw__graph__wrapper">\
     			 ${decodeURIComponent(r.chart)}
     			 <div class="czw__graph__labels">\
@@ -101,3 +104,5 @@ fetch(url)
     widget.innerHTML = "No Result";
     console.log(e);
   });
+
+// <span class="czw__graph__selector__text">2000 yrs</span>\

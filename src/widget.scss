@@ -69,7 +69,32 @@ $dark-grey: #3d3d3d;
     }
 
     &__selector {
-      height: 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 35px;
+      width: 40%;
+      border: 1px solid $dark-grey;
+      border-radius: 5px;
+
+      &__text {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 50%;
+        color: $dark-grey;
+
+        &--active {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100%;
+          width: 50%;
+          background-color: $dark-grey;
+          color: $light-grey;
+        }
+      }
     }
 
     &__wrapper {
