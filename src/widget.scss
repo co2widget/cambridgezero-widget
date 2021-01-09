@@ -2,202 +2,202 @@
 //	Base styling for CSS
 //	Use BEM at a single level to allow devs to style with higher specifity if required.
 //
-//	Need to review design 
+//	Need to review design
 //
 
 $light-grey: #d0d0d0;
 $grey: #c0c0c0;
 $red: #d97400;
-
+$dark-grey: #3d3d3d;
 .czw {
-	--title: 36px;
-	--label: 14px;
+  --title: 36px;
+  --label: 14px;
 
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center; // center column horizontally
+  width: 100%;
+  max-width: 880px;
+  overflow: hidden;
+  border: 1px solid $light-grey;
+  border-radius: 12px;
+  font-size: var(--label);
 
+  @media (min-width: 740px) {
+    flex-direction: row;
+    align-items: stretch; // ensure row items fill columns
+    justify-content: space-between; // center widget horizontally
+    margin: 0 auto;
+  }
 
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-	display: flex;
-	flex-direction: column;
-	align-items: center; // center column horizontally
-	width: 100%;
-	max-width: 880px;
-	overflow: hidden;
-	border: 1px solid $light-grey;
-	border-radius: 12px;
-	font-size: var(--label);
-	
-	@media (min-width: 740px) { 
-		flex-direction: row;
-		align-items: stretch; // ensure row items fill columns
-		justify-content: space-between; // center widget horizontally
-		margin: 0 auto;	
-	}
+  * {
+    box-sizing: border-box;
+  }
 
-	* {
-		box-sizing: border-box;
-	}
+  &__title {
+    width: 100%;
+    padding: 20px 20px;
 
-	&__title {
-		width: 100%;
-		padding: 20px 20px;
+    @media (min-width: 740px) {
+      padding: 20px 25px 25px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      // justify-content: space-between;
+    }
 
-		@media (min-width: 740px) {
-			padding: 20px 25px 25px;
-			display: flex;
-			flex-direction: column;
-			align-items: flex-start;
-			// justify-content: space-between;
-		}
+    &__text {
+      font-size: var(--title);
+    }
 
-		&__text {
-			font-size: var(--title);
-		}
+    &__date {
+      margin-top: 10px;
+    }
+  }
 
-		&__date {
-			margin-top: 10px;
-		}
-	}
+  &__graph {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    padding: 20px 20px 40px;
+    border-right: 1px solid $dark-grey;
+    @media (min-width: 740px) {
+      width: 52.5%;
+    }
 
-	&__graph {
-		width: 100%;
-		display: flex; 
-		flex-direction: column;
-		flex-shrink: 0;
-		padding: 20px 20px 40px;
+    &__selector {
+      //   height: 100px;
+      background-color: red;
+    }
 
-		@media (min-width: 740px) { 
-			width: 52.5%;
-		}
+    &__wrapper {
+      position: relative;
+      height: 300px;
+      width: 100%;
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    &__labels {
+      position: absolute; // position on top of chart
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      // font-size: 12px;
 
-		&__wrapper {
-			position: relative;
-			height: 300px;
-			width: 100%;
-			svg {
-				width: 100%;
-				height: 100%;
-			}
-		}
-		&__labels {
-			position: absolute; // position on top of chart
-			top: 0;
-			left: 0;
-			height: 100%;
-			width: 100%;
-			// font-size: 12px;
+      &--x {
+        width: 100%;
 
-			&--x {
-				width: 100%;
+        .czw__graph__labels__label {
+          top: 100%;
+          color: #003773;
 
-				.czw__graph__labels__label {
-					top: 100%;
-					color: #003773;
+          &--first {
+            left: 0;
+          }
 
-					&--first {
-						left: 0;
-					}
+          &--mid {
+            left: 50%;
+            transform: translateX(-50%);
+          }
 
-					&--mid {
-						left: 50%;
-						transform: translateX(-50%);
-					}
+          &--end {
+            right: 0;
+          }
+        }
+      }
 
-					&--end {
-						right: 0;
-					}
-				}
-			}
+      &--y {
+        .czw__graph__labels__label {
+          transform: translateY(-200%);
+          background: #fff;
+          padding-right: 6px;
+        }
+      }
 
-			&--y {
-				.czw__graph__labels__label {
-					transform: translateY(-200%);
-				    background: #fff;
-				    padding-right: 6px;
-				}
-			}
+      &__label {
+        position: absolute;
+        color: $grey;
+      }
+    }
 
-			&__label {
-				position: absolute;
-				color: $grey;
-			}
-		}
+    &__latest {
+      position: absolute;
+      top: -3px;
+      right: -2px;
+      display: block;
+      height: 9px;
+      width: 9px;
 
-		&__latest {
+      border: 2px solid $red;
+      border-radius: 50%;
+      background: #fff;
+      opacity: 0;
+      animation: show 0.5s linear 1.75s forwards,
+        flash 0.5s linear 2s infinite forwards;
+    }
+  }
 
-			position: absolute;
-			top: -3px;
-			right: -2px;
-			display: block;
-			height: 9px;
-			width: 9px;
+  &__stats {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
 
-			border: 2px solid $red;
-			border-radius: 50%;
-			background: #fff;
-			opacity: 0;
-			animation: show .5s linear 1.75s forwards, flash .5s linear 2s infinite forwards;
-		}
-		
-	}
+    @media (min-width: 320px) {
+      flex-direction: row;
+    }
+    @media (min-width: 740px) {
+      max-width: 300px;
+      width: 27.5%;
+      flex-direction: column;
+    }
 
-	&__stats {
-		
-		width: 100%;
-		display: flex;
-		flex-direction: column;
-		flex-shrink: 0;
+    &__single {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
 
-		@media (min-width: 320px) {
-			flex-direction: row;
-			
-		}
-		@media (min-width: 740px) {
-			max-width: 300px;
-			width: 27.5%;
-			flex-direction: column;	
-		}
-		
-		&__single {
-			display: flex;
-			flex-direction: column;
-			flex: 1;
-			align-items: center;
-			justify-content: center;
-			padding: 40px 20px;
+      @media (min-width: 740px) {
+        align-items: flex-start;
+        padding: 20px 30px;
+      }
 
-			@media (min-width: 740px) {
-				align-items: flex-start;
-				padding: 20px 30px;
-			}
+      &--avg {
+        background-color: #f07f5d;
+        color: white;
+      }
 
-			&--avg {
-				background-color: #F07F5D;
-				color: white;
-			}
+      &--increase {
+        background-color: #f3cf85;
+        color: black;
+      }
+    }
 
-			&--increase {
-				background-color: #F3CF85;
-				color: black;
-			}
-		}
-		
-		&__label {
-			text-transform: uppercase;
-		}
+    &__label {
+      text-transform: uppercase;
+    }
 
-		&__value {
-			margin-top: 10px;
-			font-size: var(--title);
-		}
-	}
+    &__value {
+      margin-top: 10px;
+      font-size: var(--title);
+    }
+  }
 
-	polyline {
-		stroke-dasharray: 1000;
-		stroke-dashoffset: 1000;
-		animation: dash 3s linear forwards;
-	}
+  polyline {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: dash 3s linear forwards;
+  }
 }
-
 
 @keyframes dash {
   to {
@@ -207,7 +207,7 @@ $red: #d97400;
 
 @keyframes flash {
   from {
-  	background: #fff;
+    background: #fff;
   }
   to {
     background: $red;
@@ -216,10 +216,9 @@ $red: #d97400;
 
 @keyframes show {
   from {
-  	opacity: 0;
+    opacity: 0;
   }
   to {
     opacity: 1;
   }
 }
-

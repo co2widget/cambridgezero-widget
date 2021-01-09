@@ -24,7 +24,6 @@
  *	</div>
  */
 
-
 // Pseudo code
 
 // set up constants
@@ -34,23 +33,28 @@
 // Grab data using fetch - saved files on server
 // Process data
 // Output HTML scructure in correct place with replaced values
-const url = '{{url}}/build/data.json';
-const css = '{{css}}';
-const widget = document.getElementById('czw');
+const url = "{{url}}/build/data.json";
+const css = "{{css}}";
+const widget = document.getElementById("czw");
 
-fetch(url).then(function (r) {
+fetch(url)
+  .then(function (r) {
     if (!r.ok) {
-        throw Error(r);
+      throw Error(r);
     }
     return r.json();
-}).then(function (r) {
-    const half = ((parseInt(r.year) - 1010) / 2) + 1010;
-    widget.insertAdjacentHTML('beforeEnd',css);
-    widget.insertAdjacentHTML('beforeEnd',`<div class="czw__title">\
+  })
+  .then(function (r) {
+    const half = (parseInt(r.year) - 1010) / 2 + 1010;
+    widget.insertAdjacentHTML("beforeEnd", css);
+    widget.insertAdjacentHTML(
+      "beforeEnd",
+      `<div class="czw__title">\
  			<span class="czw__title__text">CO<sub>2</sub></span>\
             <span class="czw__title__date">${r.date}</span>\
        </div>\
 		 <div class="czw__graph">\
+		 	<div class="czw__graph__selector"></div>\
             <div class="czw__graph__wrapper">\
     			 ${decodeURIComponent(r.chart)}
     			 <div class="czw__graph__labels">\
@@ -62,7 +66,7 @@ fetch(url).then(function (r) {
     					 <span class="czw__graph__labels__label czw__graph__labels__label--first">1000 AD</span>\
     					 <span class="czw__graph__labels__label czw__graph__labels__label--mid">1500 AD</span>\
     					 <span class="czw__graph__labels__label  czw__graph__labels__label--end">Now</span>\
-    				</div>\
+					</div>\
     			 </div>\
                  <div class="czw__graph__latest"></div>\
             </div>\
@@ -76,21 +80,22 @@ fetch(url).then(function (r) {
  				<span class="czw__stats__label">In last 2 years</span>\
  				<span class="czw__stats__value">${r.change} ppm</span>\
  			</div>\
- 		</div>`);
-	
-    const svg = widget.getElementsByClassName('chart')[0];
-    const y400 = svg.getElementsByClassName('y400')[0];
-    const y300 = svg.getElementsByClassName('y300')[0];
+ 		</div>`
+    );
+
+    const svg = widget.getElementsByClassName("chart")[0];
+    const y400 = svg.getElementsByClassName("y400")[0];
+    const y300 = svg.getElementsByClassName("y300")[0];
 
     const height = parseInt(svg.dataset.height);
 
-	widget.getElementsByClassName('czw_400')[0].style.bottom = parseInt(y400.getAttribute('y1')) / height * 100 + '%'
-    widget.getElementsByClassName('czw_300')[0].style.bottom = parseInt(y300.getAttribute('y1')) / height * 100 + '%'
-
-}).catch(function (e) {
-	// Handle error responses
-    widget.innerHTML = 'No Result';
+    widget.getElementsByClassName("czw_400")[0].style.bottom =
+      (parseInt(y400.getAttribute("y1")) / height) * 100 + "%";
+    widget.getElementsByClassName("czw_300")[0].style.bottom =
+      (parseInt(y300.getAttribute("y1")) / height) * 100 + "%";
+  })
+  .catch(function (e) {
+    // Handle error responses
+    widget.innerHTML = "No Result";
     console.log(e);
-});
-
-
+  });
