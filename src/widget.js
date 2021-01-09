@@ -74,7 +74,7 @@ fetch(url)
  		<div class="czw__stats">\
  			<div class="czw__stats__single czw__stats__single--avg">\
  				<span class="czw__stats__label">7-day average</span>\
- 				<span class="czw__stats__value">${r.average} ppm</span>\
+ 				<span class="czw__stats__avg-value">${r.average} ppm</span>\
 			 </div>\
 			 <div class="czw__stats__single czw__stats__single--scale">\
  			</div>\

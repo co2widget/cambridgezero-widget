@@ -19,7 +19,7 @@ $dark-grey: #3d3d3d;
   flex-direction: column;
   align-items: center; // center column horizontally
   width: 100%;
-  max-width: 880px;
+  max-width: 950px;
   overflow: hidden;
   border: 1px solid $light-grey;
   border-radius: 12px;
@@ -174,12 +174,15 @@ $dark-grey: #3d3d3d;
       color: $dark-grey;
 
       @media (min-width: 740px) {
-        align-items: flex-start;
+        // align-items: flex-start;
         padding: 5px 30px;
-        display: flex;
 
         &--avg {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
           flex: 0 0 15%;
+          border-bottom: 1px solid $dark-grey;
         }
 
         &--scale {
@@ -194,6 +197,10 @@ $dark-grey: #3d3d3d;
 
     &__label {
       text-transform: uppercase;
+    }
+
+    &__avg-value {
+      color: black;
     }
 
     &__value {
