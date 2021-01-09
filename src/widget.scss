@@ -113,9 +113,16 @@ $dark-grey: #3d3d3d;
 
       &--y {
         .czw__graph__labels__label {
-          transform: translateY(50%);
           background: #fff;
           padding-right: 6px;
+
+          &--czw_400 {
+            transform: translateY(50%);
+          }
+
+          &--czw_300 {
+            transform: translateY(1100%);
+          }
         }
       }
 

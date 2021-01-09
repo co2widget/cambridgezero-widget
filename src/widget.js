@@ -58,9 +58,9 @@ fetch(url)
             <div class="czw__graph__wrapper">\
     			 ${decodeURIComponent(r.chart)}
     			 <div class="czw__graph__labels">\
-    			 	<div class="czw__graph__labels czw__graph__labels--y">\ 
-    					 <span class="czw__graph__labels__label czw_400">300 ppm</span>\
-    					 <span class="czw__graph__labels__label czw_300">400 ppm</span>\
+					 <div class="czw__graph__labels czw__graph__labels--y">\ 
+					 	 <span class="czw__graph__labels__label czw__graph__labels__label--czw_400">400 ppm</span>\
+    					 <span class="czw__graph__labels__label czw__graph__labels__label--czw_300">300 ppm</span>\
     			 	</div>\ 
     				<div class="czw__graph__labels czw__graph__labels--x">\ 
     					 <span class="czw__graph__labels__label czw__graph__labels__label--first">1000 AD</span>\
@@ -84,18 +84,20 @@ fetch(url)
     );
 
     const svg = widget.getElementsByClassName("chart")[0];
-    const y400 = svg.getElementsByClassName("y400")[0];
-    const y300 = svg.getElementsByClassName("y300")[0];
+    // const y400 = svg.getElementsByClassName("y400")[0];
+    // const y300 = svg.getElementsByClassName("y300")[0];
 
-    const height = parseInt(svg.dataset.height);
+    // const height = parseInt(svg.dataset.height);
 
-    widget.getElementsByClassName("czw_400")[0].style.bottom =
-      (parseInt(y400.getAttribute("y1")) / height) * 100 + "%";
-    widget.getElementsByClassName("czw_300")[0].style.bottom =
-      (parseInt(y300.getAttribute("y1")) / height) * 100 + "%";
+    // widget.getElementsByClassName("czw_400")[0].style.bottom =
+    //(parseInt(y400.getAttribute("y1")) / height) * 100 + "%";
+    // widget.getElementsByClassName("czw_300")[0].style.bottom =
+    //   (parseInt(y300.getAttribute("y1")) / height) * 100 + "%";
   })
   .catch(function (e) {
     // Handle error responses
     widget.innerHTML = "No Result";
     console.log(e);
   });
+
+//  <span class="czw__graph__labels__label czw_400">300 ppm</span>\
