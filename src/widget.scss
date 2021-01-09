@@ -69,13 +69,12 @@ $dark-grey: #3d3d3d;
     }
 
     &__selector {
-      //   height: 100px;
-      background-color: red;
+      height: 50px;
     }
 
     &__wrapper {
       position: relative;
-      height: 300px;
+      height: 250px;
       width: 100%;
       svg {
         width: 100%;
@@ -114,7 +113,7 @@ $dark-grey: #3d3d3d;
 
       &--y {
         .czw__graph__labels__label {
-          transform: translateY(-200%);
+          transform: translateY(50%);
           background: #fff;
           padding-right: 6px;
         }
