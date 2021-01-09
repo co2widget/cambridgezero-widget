@@ -144,11 +144,11 @@ class Import {
 		$y300 = $height - (300 - $first[1]) - $offset;
 		$y400 = $height - (400 - $first[1]) - $offset;
 
-		$y300 = "<line class=\"y300\" x1=\"0\" x2=\"${width}\" y1=\"${y300}\" y2=\"${y300}\" stroke=\"#c0c0c0\" stroke-width=\"1\" vector-effect=\"non-scaling-stroke\" id=\"y300\" stroke-dasharray=\"5,5\"></line>";
+		$y300 = "<line class=\"y300\" x1=\"0\" x2=\"${width}\" y1=\"${y300}\" y2=\"${y300}\" stroke=\"#d0d0d0\" stroke-width=\"1\" vector-effect=\"non-scaling-stroke\" id=\"y300\" stroke-dasharray=\"5,5\"></line>";
 
-		$y400 = "<line class=\"y400\" x1=\"0\" x2=\"${width}\" y1=\"${y400}\" y2=\"${y400}\" stroke=\"#c0c0c0\" stroke-width=\"1\" vector-effect=\"non-scaling-stroke\"id=\"y400\" stroke-dasharray=\"5,5\"></line>";
+		$y400 = "<line class=\"y400\" x1=\"0\" x2=\"${width}\" y1=\"${y400}\" y2=\"${y400}\" stroke=\"#d0d0d0\" stroke-width=\"1\" vector-effect=\"non-scaling-stroke\"id=\"y400\" stroke-dasharray=\"5,5\"></line>";
 
-		$xaxis = "<line x1=\"0\" x2=\"${width}\" y1=\"${height}\" y2=\"${height}\" stroke=\"#c0c0c0\" stroke-width=\"1\" vector-effect=\"non-scaling-stroke\"id=\"y400\"></line>";
+		$xaxis = "<line x1=\"0\" x2=\"${width}\" y1=\"${height}\" y2=\"${height}\" stroke=\"none\" vector-effect=\"non-scaling-stroke\"id=\"y400\"></line>";
 
 		ob_start(); ?><svg viewBox="0 0 <?= $width; ?> <?= $height; ?>" data-height="<?= $height; ?>" class="chart" preserveAspectRatio="none"><?= $y300; ?><?= $y400; ?><?= $xaxis; ?><polyline fill="none" stroke="#d97400" stroke-width="4" points="<?= implode(' ', $polyline); ?>" vector-effect="non-scaling-stroke" stroke-linecap="round"></polyline></svg><?php 
 		return str_replace('+', ' ', urlencode(ob_get_clean()));

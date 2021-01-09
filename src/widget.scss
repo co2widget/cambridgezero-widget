@@ -65,7 +65,7 @@ $dark-grey: #3d3d3d;
     padding: 20px 20px 40px;
     border-right: 1px solid $dark-grey;
     @media (min-width: 740px) {
-      width: 52.5%;
+      width: 58%;
     }
 
     &__selector {
@@ -87,14 +87,13 @@ $dark-grey: #3d3d3d;
       left: 0;
       height: 100%;
       width: 100%;
-      // font-size: 12px;
 
       &--x {
         width: 100%;
 
         .czw__graph__labels__label {
           top: 100%;
-          color: #003773;
+          color: $dark-grey;
 
           &--first {
             left: 0;
@@ -117,7 +116,7 @@ $dark-grey: #3d3d3d;
           padding-right: 6px;
 
           &--czw_400 {
-            transform: translateY(50%);
+            transform: translateY(100%);
           }
 
           &--czw_300 {
