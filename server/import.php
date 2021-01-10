@@ -183,7 +183,6 @@ class Import {
 		$tri_pos = ($change * 2) / 20 * 100 - 2.5; // minus 2.5 to account for 80% width of scale (20 units long (-10 -> 10), 20/8 = 2.5)
 		$tri_coords_top = ($tri_pos - 2) . ',0 ' . ($tri_pos + 2) . ',0 ' . $tri_pos . ',20';
 		$tri_coords_btm = ($tri_pos - 2) . ',100 ' . ($tri_pos + 2) . ',100 ' . $tri_pos . ',80';
-
 		$triangle = "<g><polygon fill=\"#3d3d3d\" points=\"$tri_coords_top\"/><polygon fill=\"#3d3d3d\" points=\"$tri_coords_btm\"/></g>";
 
 		ob_start(); ?><svg width="100%" height="20%" viewBox="0 0 100 100" class="scale" preserveAspectRatio="none"><?= $markers; ?><?= $rect; ?><?= $triangle; ?></svg><?php 
