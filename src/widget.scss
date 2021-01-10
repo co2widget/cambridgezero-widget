@@ -232,6 +232,10 @@ $dark-grey: #3d3d3d;
         display: flex;
         align-items: center;
         justify-content: center;
+        svg {
+          width: 80%;
+          height: 20%;
+        }
       }
     }
 

@@ -158,13 +158,20 @@ class Import {
 	private static function scale($data) {
 		$change = floatval(substr(Import::change($data), 1));
 
-		$rect = "<rect width=\"80%\" height=\"100%\" x=\"10%\" fill=\"none\" stroke-width=\"0.5\" stroke=\"#3d3d3d\"></rect>";
+		if ($change > "0") {
+			$change = $change + 10;
+		} else {
+			$change = 10 - abs($change);
+		}
+
+
+		$rect = "<rect width=\"100%\" height=\"100%\" x=\"0%\" fill=\"none\" stroke-width=\"0.5\" stroke=\"#3d3d3d\"></rect>";
 		
 		$markers = "<g class=\"markers\">";
 
-		$pc = 10;
+		$pc = 0;
 		for ($x = 1; $x <= 9; $x++) {
-			$pc = $pc + 8;
+			$pc = $pc + 10;
 			if ($x < "4") {
 				$fill = "green";
 			} else if ($x < "7") {
@@ -180,7 +187,7 @@ class Import {
 		
 		$markers = $markers . "</g>"; 
 
-		$tri_pos = ($change * 2) / 20 * 100 - 2.5; // minus 2.5 to account for 80% width of scale (20 units long (-10 -> 10), 20/8 = 2.5)
+		$tri_pos = ($change) / 20 * 100; 
 		$tri_coords_top = ($tri_pos - 2) . ',0 ' . ($tri_pos + 2) . ',0 ' . $tri_pos . ',20';
 		$tri_coords_btm = ($tri_pos - 2) . ',100 ' . ($tri_pos + 2) . ',100 ' . $tri_pos . ',80';
 		$triangle = "<g><polygon fill=\"#3d3d3d\" points=\"$tri_coords_top\"/><polygon fill=\"#3d3d3d\" points=\"$tri_coords_btm\"/></g>";
