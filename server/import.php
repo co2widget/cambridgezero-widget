@@ -156,8 +156,19 @@ class Import {
 	}
 
 	private static function scale() {
+		$rect = "<rect width=\"100%\" height=\"100%\" fill=\"none\" stroke-width=\"1\" stroke=\"#3d3d3d\"></rect>";
 		
-		ob_start(); ?><svg width="80%" height="20%" class="scale" preserveAspectRatio="none"><rect width="100%" height="100%" fill="none" stroke-width="1" stroke="#3d3d3d" /></svg><?php 
+		$markers = "<g class=\"markers\">";
+
+		for ($x = 1; $x <= 10; $x++) {
+			$pc = ($x * 10) . "%";
+			$marker = "<rect fill=\"red\" x=\"$pc\" y=\"0\" width=\"2\" height=\"35\"></rect>";
+			$markers = $markers . $marker;		
+		}
+		
+		$markers = $markers . "</g>"; 
+
+		ob_start(); ?><svg width="80%" height="20%" class="scale" preserveAspectRatio="none"><?= $rect; ?><?= $markers; ?></svg><?php 
 		return str_replace('+', ' ', urlencode(ob_get_clean()));
 	}
 
