@@ -38,7 +38,7 @@ class Import {
 			'chart' => Import::chart($data),
 			'year' => date('Y'), // Current year to get halfway point easier on chart
 			'date' => date('j M Y'), // Current year to get halfway point easier on chart
-			'scale' => Import::scale(),
+			'scale' => Import::scale($data),
 		]);
 
 		//print_r($data);
@@ -155,20 +155,38 @@ class Import {
 		return str_replace('+', ' ', urlencode(ob_get_clean()));
 	}
 
-	private static function scale() {
-		$rect = "<rect width=\"100%\" height=\"100%\" fill=\"none\" stroke-width=\"1\" stroke=\"#3d3d3d\"></rect>";
+	private static function scale($data) {
+		$change = floatval(substr(Import::change($data), 1));
+
+		$rect = "<rect width=\"80%\" height=\"100%\" x=\"10%\" fill=\"none\" stroke-width=\"0.5\" stroke=\"#3d3d3d\"></rect>";
 		
 		$markers = "<g class=\"markers\">";
 
-		for ($x = 1; $x <= 10; $x++) {
-			$pc = ($x * 10) . "%";
-			$marker = "<rect fill=\"red\" x=\"$pc\" y=\"0\" width=\"2\" height=\"35\"></rect>";
+		$pc = 10;
+		for ($x = 1; $x <= 9; $x++) {
+			$pc = $pc + 8;
+			if ($x < "4") {
+				$fill = "green";
+			} else if ($x < "7") {
+				$fill = "yellow";
+			} else {
+				$fill = "red";
+			}
+			
+			$pos = $pc . "%";
+			$marker = "<rect fill=$fill x=\"$pos\" y=\"0\" width=\"0.5\" height=\"100%\"></rect>";
 			$markers = $markers . $marker;		
 		}
 		
 		$markers = $markers . "</g>"; 
 
-		ob_start(); ?><svg width="80%" height="20%" class="scale" preserveAspectRatio="none"><?= $rect; ?><?= $markers; ?></svg><?php 
+		$tri_pos = ($change * 2) / 20 * 100 - 2.5; // minus 2.5 to account for 80% width of scale (20 units long (-10 -> 10), 20/8 = 2.5)
+		$tri_coords_top = ($tri_pos - 2) . ',0 ' . ($tri_pos + 2) . ',0 ' . $tri_pos . ',20';
+		$tri_coords_btm = ($tri_pos - 2) . ',100 ' . ($tri_pos + 2) . ',100 ' . $tri_pos . ',80';
+
+		$triangle = "<g><polygon fill=\"#3d3d3d\" points=\"$tri_coords_top\"/><polygon fill=\"#3d3d3d\" points=\"$tri_coords_btm\"/></g>";
+
+		ob_start(); ?><svg width="100%" height="20%" viewBox="0 0 100 100" class="scale" preserveAspectRatio="none"><?= $markers; ?><?= $rect; ?><?= $triangle; ?></svg><?php 
 		return str_replace('+', ' ', urlencode(ob_get_clean()));
 	}
 
