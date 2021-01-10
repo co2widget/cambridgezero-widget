@@ -83,6 +83,7 @@ $dark-grey: #3d3d3d;
         align-items: center;
         height: 100%;
         width: 50%;
+        cursor: pointer;
         color: $dark-grey;
 
         &.active {
@@ -93,6 +94,7 @@ $dark-grey: #3d3d3d;
           width: 50%;
           background-color: $dark-grey;
           color: $light-grey;
+          pointer-events: none;
         }
       }
     }
