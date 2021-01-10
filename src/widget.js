@@ -74,17 +74,21 @@ fetch(url)
                  <div class="czw__graph__latest"></div>\
             </div>\
 		 </div>\
- 		<div class="czw__stats">\
- 			<div class="czw__stats__single czw__stats__single--avg">\
- 				<span class="czw__stats__label">7-day average</span>\
- 				<span class="czw__stats__avg-value">${r.average} ppm</span>\
-			 </div>\
-			 <div class="czw__stats__single czw__stats__single--scale">\
- 			</div>\
- 			<div class="czw__stats__single czw__stats__single--increase">\
- 				<span class="czw__stats__label">In last 2 years</span>\
- 				<span class="czw__stats__value">${r.change} ppm</span>\
- 			</div>\
+     <div class="czw__stats">\
+      <div class="czw__stats__top">\
+        <div class="czw__stats__top czw__stats__top--avg">\
+          <span class="czw__stats__label">7-day average</span>\
+          <span class="czw__stats__avg-value">${r.average} ppm</span>\
+        </div>\
+        <div class="czw__stats__top czw__stats__top--scale">scale
+        </div>\
+      </div>\
+      <div class="czw__stats__bottom">\
+        <div class="czw__stats__bottom czw__stats__bottom--increase">\
+          <span class="czw__stats__label">In last 2 years</span>\
+          <span class="czw__stats__value">${r.change} ppm</span>\
+        </div>\
+      </div>\
  		</div>`
     );
 
