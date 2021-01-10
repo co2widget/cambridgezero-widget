@@ -229,6 +229,9 @@ $dark-grey: #3d3d3d;
       &--scale {
         height: 75%;
         width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
     }
 

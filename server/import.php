@@ -38,6 +38,7 @@ class Import {
 			'chart' => Import::chart($data),
 			'year' => date('Y'), // Current year to get halfway point easier on chart
 			'date' => date('j M Y'), // Current year to get halfway point easier on chart
+			'scale' => Import::scale(),
 		]);
 
 		//print_r($data);
@@ -151,6 +152,12 @@ class Import {
 		$xaxis = "<line x1=\"0\" x2=\"${width}\" y1=\"${height}\" y2=\"${height}\" stroke=\"none\" vector-effect=\"non-scaling-stroke\"id=\"y400\"></line>";
 
 		ob_start(); ?><svg viewBox="0 0 <?= $width; ?> <?= $height; ?>" data-height="<?= $height; ?>" class="chart" preserveAspectRatio="none"><?= $y300; ?><?= $y400; ?><?= $xaxis; ?><polyline fill="none" stroke="#d97400" stroke-width="4" points="<?= implode(' ', $polyline); ?>" vector-effect="non-scaling-stroke" stroke-linecap="round"></polyline></svg><?php 
+		return str_replace('+', ' ', urlencode(ob_get_clean()));
+	}
+
+	private static function scale() {
+		
+		ob_start(); ?><svg width="80%" height="20%" class="scale" preserveAspectRatio="none"><rect width="100%" height="100%" fill="none" stroke-width="1" stroke="#3d3d3d" /></svg><?php 
 		return str_replace('+', ' ', urlencode(ob_get_clean()));
 	}
 

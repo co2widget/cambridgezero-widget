@@ -80,7 +80,8 @@ fetch(url)
           <span class="czw__stats__label">7-day average</span>\
           <span class="czw__stats__avg-value">${r.average} ppm</span>\
         </div>\
-        <div class="czw__stats__top czw__stats__top--scale">scale
+        <div class="czw__stats__top czw__stats__top--scale">\
+        ${decodeURIComponent(r.scale)}
         </div>\
       </div>\
       <div class="czw__stats__bottom">\
