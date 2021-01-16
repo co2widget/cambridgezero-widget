@@ -271,11 +271,10 @@ $top-boundary: 800px;
       }
 
       &--sclabel {
-        width: 90%;
+        width: 240px;
         height: auto;
         display: flex;
         flex-direction: row;
-        // align-items: flex-end;
         justify-content: space-between;
       }
 
