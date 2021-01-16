@@ -166,30 +166,7 @@ $top-boundary: 740px;
         .czw__graph__labels__label {
           background: #fff;
           padding-right: 6px;
-
-          &--czw_400 {
-            transform: translateY(100%);
-
-            @media (min-width: 430px) and (max-width: $top-boundary) {
-              transform: translateY(150%);
-            }
-          }
-
-          &--czw_300 {
-            transform: translateY(1260%);
-
-            @media (min-width: 430px) {
-              transform: translateY(1550%);
-            }
-
-            @media (min-width: 570px) {
-              transform: translateY(1600%);
-            }
-
-            @media (min-width: $top-boundary) {
-              transform: translateY(1050%);
-            }
-          }
+          transform: translateY(-175%);
         }
       }
 
