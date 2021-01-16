@@ -59,7 +59,8 @@ fetch(url)
 				<span class="czw__graph__selector__text">20 yrs</span>\		 
 			 </div>\
             <div class="czw__graph__wrapper">\
-    			 ${decodeURIComponent(r.chart)}
+           ${decodeURIComponent(r.chart)}
+           ${decodeURIComponent(r.chart2)}
     			 <div class="czw__graph__labels">\
 					 <div class="czw__graph__labels czw__graph__labels--y">\ 
 					 	 <span class="czw__graph__labels__label czw_400">300 ppm</span>\
@@ -99,7 +100,7 @@ fetch(url)
  		</div>`
     );
 
-    const svg = widget.getElementsByClassName("chart")[0];
+    const svg = widget.getElementsByClassName("chart2000")[0];
 
     const selectBtns = widget.getElementsByClassName(
       "czw__graph__selector__text"
