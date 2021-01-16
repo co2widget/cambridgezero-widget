@@ -9,7 +9,7 @@ $light-grey: #d0d0d0;
 $grey: #c0c0c0;
 $red: #d97400;
 $dark-grey: #3d3d3d;
-$top-boundary: 780px;
+$top-boundary: 800px;
 .czw {
   --title: 40px;
   --label: 16px;
@@ -71,6 +71,11 @@ $top-boundary: 780px;
 
     @media (min-width: 430px) {
       height: 70vh;
+    }
+
+    @media (min-height: 800px) {
+      // for tablets / ipad
+      height: 500px;
     }
 
     @media (min-width: $top-boundary) {
