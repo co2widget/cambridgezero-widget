@@ -107,6 +107,7 @@ $dark-grey: #3d3d3d;
           background-color: $dark-grey;
           color: $light-grey;
           pointer-events: none;
+          border-radius: 3px;
         }
       }
     }
@@ -165,7 +166,11 @@ $dark-grey: #3d3d3d;
           }
 
           &--czw_300 {
-            transform: translateY(1100%);
+            transform: translateY(1500%);
+
+            @media (min-width: 740px) {
+              transform: translateY(1100%);
+            }
           }
         }
       }
