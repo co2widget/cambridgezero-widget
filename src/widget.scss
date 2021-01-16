@@ -263,11 +263,16 @@ $top-boundary: 740px;
         justify-content: center;
         svg {
           margin-top: 3px;
-          height: 30%;
           min-height: 30px;
           max-height: 40px;
           width: 80%;
           max-width: 220px;
+        }
+      }
+      @media (min-width: 740px) and (max-width: 890px) {
+        &--sclabel,
+        &--scale {
+          width: 90%;
         }
       }
     }
