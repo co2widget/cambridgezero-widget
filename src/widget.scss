@@ -163,13 +163,25 @@ $dark-grey: #3d3d3d;
 
           &--czw_400 {
             transform: translateY(100%);
+
+            @media (min-width: 430px) and (max-width: 740px) {
+              transform: translateY(150%);
+            }
           }
 
           &--czw_300 {
-            transform: translateY(1500%);
+            transform: translateY(1260%);
+
+            @media (min-width: 430px) {
+              transform: translateY(1550%);
+            }
+
+            @media (min-width: 570px) {
+              transform: translateY(1600%);
+            }
 
             @media (min-width: 740px) {
-              transform: translateY(1100%);
+              transform: translateY(1050%);
             }
           }
         }
