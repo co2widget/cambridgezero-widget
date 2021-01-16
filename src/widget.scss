@@ -9,7 +9,7 @@ $light-grey: #d0d0d0;
 $grey: #c0c0c0;
 $red: #d97400;
 $dark-grey: #3d3d3d;
-$top-boundary: 800px;
+$top-boundary: 740px;
 .czw {
   --title: 40px;
   --label: 16px;
@@ -62,7 +62,7 @@ $top-boundary: 800px;
 
   &__graph {
     width: 100%;
-    height: 60vh;
+    height: 65vh;
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
@@ -218,7 +218,7 @@ $top-boundary: 800px;
 
   &__stats {
     width: 100%;
-    height: 220px;
+    height: 160px;
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
@@ -237,7 +237,7 @@ $top-boundary: 800px;
 
     &__top {
       width: 100%;
-      height: 50%;
+      height: 70%;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -280,7 +280,7 @@ $top-boundary: 800px;
 
       &--scale {
         height: 60%;
-        width: 100%;
+        width: 240px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -297,11 +297,14 @@ $top-boundary: 800px;
 
     &__bottom {
       display: flex;
-      flex-direction: column;
       flex: 1;
       align-items: center;
-      justify-content: center;
+      justify-content: space-around;
       color: $dark-grey;
+
+      @media (min-width: 430px) {
+        flex-direction: column;
+      }
 
       @media (min-width: $top-boundary) {
         width: 100%;
@@ -324,8 +327,12 @@ $top-boundary: 800px;
     }
 
     &__value {
-      margin-top: 10px;
-      font-size: var(--title);
+      color: black;
+      @media (min-width: 430px) {
+        color: $dark-grey;
+        margin-top: 10px;
+        font-size: var(--title);
+      }
     }
   }
 
