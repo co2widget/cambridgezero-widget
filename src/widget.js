@@ -60,7 +60,6 @@ fetch(url)
 			 </div>\
             <div class="czw__graph__wrapper">\
            ${decodeURIComponent(r.chart)}
-           ${decodeURIComponent(r.chart2)}
     			 <div class="czw__graph__labels">\
 					 <div class="czw__graph__labels czw__graph__labels--y">\ 
 					 	 <span class="czw__graph__labels__label czw_400">300 ppm</span>\
