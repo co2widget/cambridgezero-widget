@@ -163,19 +163,20 @@ class Import {
 	private static function chart2($data) {
 		$lastyear = (int)date('Y') - 1;
 
+		// generate array of last 20 years not including this year
 		$years = range($lastyear, $lastyear - 20);
 	
 		$x = 0;
 		$points = [];
 		$count = count($data);
 
-		
+		// extract year and value from strings for each year
 		while ($x < count($data)) {
 			$record = explode(',', $data[$x]);
 
 			$year = intval($record[0]);
 
-			$temp = array("year" => $year, "value" => floatval($record[3]));
+			$temp = array('year' => $year, 'value' => floatval($record[3]));
 			array_push($points, $temp);
 
 			$x++;
@@ -183,11 +184,32 @@ class Import {
 		}
 
 		// filter points to get only last 20 years
-		$result = array_filter($points, function($v) use ($years) {
+		$data20 = array_filter($points, function($v) use ($years) {
 			return in_array($v['year'], $years);
 		});
 
+		// sum values for each of 20 years and divide by respective counts to get avg
+		foreach ($data20 as $val) {
+			if (!isset($result[$val['year']]))
+			{
+				//$result[$val['year']] = $val;
+				$result[$val['year']]["count"] = 1;
+			}
+			else{
+				$result[$val['year']]['value'] += $val['value'];
+				$result[$val['year']]["count"] ++;
+			}
+		}
+		
+		// calculate avg key and remove excess keys
+		foreach($result as $k => $v) {
+			$result[$k]['avg'] = $v['value']/$v['count'];
+			unset($result[$k]['count']);
+			unset($result[$k]['value']);
+		}
+
 		var_dump($result);
+		
 
 		
 	}
