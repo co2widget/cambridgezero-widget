@@ -132,9 +132,9 @@ $top-boundary: 740px;
       }
 
       .chart20 {
-        position: absolute;
-        fill: red;
-        z-index: 100;
+        position: relative;
+        width: 100%;
+        height: 100%;
       }
       @media (min-width: $top-boundary) {
         height: 250px;

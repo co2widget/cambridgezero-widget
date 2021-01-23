@@ -40,7 +40,7 @@ class Import {
 			'average' => Import::average($data),
 			'change' => Import::change($data),
 			'chart' => Import::chart($data),
-			'chart2' => Import::chart2($data),
+			'chart20' => Import::chart20($data),
 			'year' => date('Y'), // Current year to get halfway point easier on chart
 			'date' => date('j M Y'), // Current year to get halfway point easier on chart
 			'scale' => Import::scale($data),
@@ -161,7 +161,7 @@ class Import {
 		return str_replace('+', ' ', urlencode(ob_get_clean()));
 	}
 
-	private static function chart2($data) {
+	private static function chart20($data) {
 		$lastyear = (int)date('Y') - 1;
 
 		// generate array of last 20 years not including this year
@@ -209,11 +209,11 @@ class Import {
 			unset($result[$k]['value']);
 		}
 		
-		$offset = 10; // Prevent negative results
+		$offset = 0; // Prevent negative results
 
 		$first = array_values($result)[0]['avg'];
 		
-		$last = end($result)['avg'];
+		$last = (end($result)['avg'] + 5);
 
 		$width = count($result); // based on number of years
 		
@@ -221,6 +221,7 @@ class Import {
 		
 		$points = array_values($result);
 		var_dump($points);
+		
 		$x = 0;
 		$polyline = [];
 		foreach ($points as $point) {
