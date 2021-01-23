@@ -56,10 +56,11 @@ fetch(url)
 		 <div class="czw__graph">\
 			 <div class="czw__graph__selector">\
 			 	<span class="czw__graph__selector__text active">2000 yrs</span>\
-				<span class="czw__graph__selector__text">20 yrs</span>\		 
+				<span class="czw__graph__selector__text ">20 yrs</span>\		 
 			 </div>\
             <div class="czw__graph__wrapper">\
-           ${decodeURIComponent(r.chart20)}
+            ${decodeURIComponent(r.chart20)}
+            ${decodeURIComponent(r.chart)}
     			 <div class="czw__graph__labels">\
 					 <div class="czw__graph__labels czw__graph__labels--y">\ 
 					 	 <span class="czw__graph__labels__label czw_400">300 ppm</span>\
@@ -99,7 +100,7 @@ fetch(url)
  		</div>`
     );
 
-    const svg = widget.getElementsByClassName("chart20")[0];
+    const svg = widget.getElementsByClassName("chart2000")[0];
 
     const selectBtns = widget.getElementsByClassName(
       "czw__graph__selector__text"
@@ -113,15 +114,33 @@ fetch(url)
       });
     }
 
-    // const y400 = svg.getElementsByClassName("y400")[0];
-    // const y300 = svg.getElementsByClassName("y300")[0];
+    selectBtns[0].addEventListener("click", function () {
+      if (this.classList.contains("active")) {
+        document.getElementsByClassName("chart2000")[0].style.visibility =
+          "visible";
+        document.getElementsByClassName("chart20")[0].style.visibility =
+          "hidden";
+      }
+    });
 
-    // const height = parseInt(svg.dataset.height);
+    selectBtns[1].addEventListener("click", function () {
+      if (this.classList.contains("active")) {
+        document.getElementsByClassName("chart2000")[0].style.visibility =
+          "hidden";
+        document.getElementsByClassName("chart20")[0].style.visibility =
+          "visible";
+      }
+    });
 
-    // widget.getElementsByClassName("czw_300")[0].style.bottom =
-    //   (parseInt(y300.getAttribute("y1")) / height) * 100 + "%";
-    // widget.getElementsByClassName("czw_400")[0].style.bottom =
-    //   (parseInt(y400.getAttribute("y1")) / height) * 100 + "%";
+    const y400 = svg.getElementsByClassName("y400")[0];
+    const y300 = svg.getElementsByClassName("y300")[0];
+
+    const height = parseInt(svg.dataset.height);
+
+    widget.getElementsByClassName("czw_300")[0].style.bottom =
+      (parseInt(y300.getAttribute("y1")) / height) * 100 + "%";
+    widget.getElementsByClassName("czw_400")[0].style.bottom =
+      (parseInt(y400.getAttribute("y1")) / height) * 100 + "%";
   })
   .catch(function (e) {
     // Handle error responses
