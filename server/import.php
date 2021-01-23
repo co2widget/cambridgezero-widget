@@ -128,6 +128,7 @@ class Import {
 			floatval($last[3])
 		];
 
+		//var_dump($points);
 
 		$offset = 10; // Prevent negative results
 
@@ -145,7 +146,7 @@ class Import {
 			$polyline[] = "${x},${y}";
 			$x++;
 		}
-		// print_r($polyline);
+		var_dump($polyline);
 
 		$y300 = $height - (300 - $first[1]) - $offset;
 		$y400 = $height - (400 - $first[1]) - $offset;
@@ -164,7 +165,7 @@ class Import {
 		$lastyear = (int)date('Y') - 1;
 
 		// generate array of last 20 years not including this year
-		$years = range($lastyear, $lastyear - 20);
+		$years = range($lastyear, $lastyear - 19);
 	
 		$x = 0;
 		$points = [];
@@ -192,7 +193,6 @@ class Import {
 		foreach ($data20 as $val) {
 			if (!isset($result[$val['year']]))
 			{
-				//$result[$val['year']] = $val;
 				$result[$val['year']]["count"] = 1;
 			}
 			else{
@@ -200,6 +200,7 @@ class Import {
 				$result[$val['year']]["count"] ++;
 			}
 		}
+
 		
 		// calculate avg key and remove excess keys
 		foreach($result as $k => $v) {
@@ -207,10 +208,33 @@ class Import {
 			unset($result[$k]['count']);
 			unset($result[$k]['value']);
 		}
-
-		var_dump($result);
 		
+		$offset = 10; // Prevent negative results
 
+		$first = array_values($result)[0]['avg'];
+		
+		$last = end($result)['avg'];
+
+		$width = count($result); // based on number of years
+		
+		$height = $last - $first + $offset;
+		
+		$points = array_values($result);
+		var_dump($points);
+		$x = 0;
+		$polyline = [];
+		foreach ($points as $point) {
+			$y = $height - ($point['avg'] - $first) - $offset;
+			$polyline[] = "${x},${y}";
+			$x++;
+		}
+
+		$xaxis = "<line x1=\"0\" x2=\"${width}\" y1=\"${height}\" y2=\"${height}\" stroke=\"none\" vector-effect=\"non-scaling-stroke\"id=\"y400\"></line>";
+
+		ob_start(); ?><svg viewBox="0 0 <?= $width; ?> <?= $height; ?>" data-height="<?= $height; ?>" class="chart20" preserveAspectRatio="none"><?= $xaxis; ?><polyline fill="none" stroke="#d97400" stroke-width="4" points="<?= implode(' ', $polyline); ?>" vector-effect="non-scaling-stroke" stroke-linecap="round"></polyline></svg><?php 
+		return str_replace('+', ' ', urlencode(ob_get_clean()));
+
+		
 		
 	}
 
