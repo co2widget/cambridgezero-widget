@@ -1,10 +1,5 @@
 <?php
- ini_set('memory_limit', '1024M');
-
- echo memory_get_usage();
-
-// https://stackoverflow.com/questions/58256677/using-php-with-google-bigquery
-
+ 
 class Import {
 
 	public static $url = 'https://www.climatelevels.org/graphs/co2-daily_data.php?callback=1';
