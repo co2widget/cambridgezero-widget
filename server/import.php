@@ -146,7 +146,7 @@ class Import {
 			$polyline[] = "${x},${y}";
 			$x++;
 		}
-		var_dump($polyline);
+		// var_dump($polyline);
 
 		$y300 = $height - (300 - $first[1]) - $offset;
 		$y400 = $height - (400 - $first[1]) - $offset;
@@ -209,20 +209,19 @@ class Import {
 			unset($result[$k]['value']);
 		}
 		
-		$offset = 0; // Prevent negative results
+		$offset = 1; // Prevent negative results
 
 		$first = array_values($result)[0]['avg'];
 		
-		$last = (end($result)['avg'] + 5);
+		$last = (end($result)['avg'] );
 
 		$width = count($result); // based on number of years
 		
 		$height = $last - $first + $offset;
 		
 		$points = array_values($result);
-		var_dump($points);
 		
-		$x = 0;
+		$x = 1; // start at 1 to fit on graph - needs a look
 		$polyline = [];
 		foreach ($points as $point) {
 			$y = $height - ($point['avg'] - $first) - $offset;
