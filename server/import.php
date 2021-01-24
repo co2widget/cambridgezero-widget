@@ -128,7 +128,6 @@ class Import {
 			floatval($last[3])
 		];
 
-		//var_dump($points);
 
 		$offset = 10; // Prevent negative results
 
@@ -139,6 +138,7 @@ class Import {
 		$width = count($points); // based on number of years
 		$height = $last[1] - $first[1] + $offset; // based on number of values
 
+		// var_dump($width);
 		$x = 0;
 		$polyline = [];
 		foreach ($points as $key => $point) {
@@ -220,6 +220,7 @@ class Import {
 		$height = $last - $first + $offset;
 		
 		$points = array_values($result);
+		// var_dump($points);
 		
 		$x = 1; // start at 1 to fit on graph - needs a look
 		$polyline = [];
@@ -229,9 +230,14 @@ class Import {
 			$x++;
 		}
 
+		var_dump($polyline);
+
 		$xaxis = "<line x1=\"0\" x2=\"${width}\" y1=\"${height}\" y2=\"${height}\" stroke=\"none\" vector-effect=\"non-scaling-stroke\"id=\"y400\"></line>";
 
-		ob_start(); ?><svg viewBox="0 0 <?= $width; ?> <?= $height; ?>" data-height="<?= $height; ?>" class="chart20" preserveAspectRatio="none"><?= $xaxis; ?><polyline fill="none" stroke="#d97400" stroke-width="4" points="<?= implode(' ', $polyline); ?>" vector-effect="non-scaling-stroke" stroke-linecap="round"></polyline></svg><?php 
+		$y400 = $height - (400 - $first) - $offset;
+		$y400 = "<line class=\"y400\" x1=\"0\" x2=\"${width}\" y1=\"${y400}\" y2=\"${y400}\" stroke=\"#d0d0d0\" stroke-width=\"1\" vector-effect=\"non-scaling-stroke\"id=\"y400\" stroke-dasharray=\"5,5\"></line>";
+
+		ob_start(); ?><svg viewBox="0 0 <?= $width; ?> <?= $height; ?>" data-height="<?= $height; ?>" class="chart20" preserveAspectRatio="none"><?= $y400; ?><?= $xaxis; ?><polyline fill="none" stroke="#d97400" stroke-width="4" points="<?= implode(' ', $polyline); ?>" vector-effect="non-scaling-stroke" stroke-linecap="round"></polyline></svg><?php 
 		return str_replace('+', ' ', urlencode(ob_get_clean()));
 
 		

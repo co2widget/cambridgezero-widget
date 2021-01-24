@@ -102,6 +102,11 @@ fetch(url)
 
     const svg = widget.getElementsByClassName("chart2000")[0];
 
+    // define last year
+    let end = new Date().getFullYear() - 1;
+    let mid = end - 10;
+    let start = end - 19;
+
     const selectBtns = widget.getElementsByClassName(
       "czw__graph__selector__text"
     );
@@ -116,19 +121,43 @@ fetch(url)
 
     selectBtns[0].addEventListener("click", function () {
       if (this.classList.contains("active")) {
-        document.getElementsByClassName("chart2000")[0].style.visibility =
+        widget.getElementsByClassName("chart2000")[0].style.visibility =
           "visible";
-        document.getElementsByClassName("chart20")[0].style.visibility =
-          "hidden";
+        widget.getElementsByClassName("chart20")[0].style.visibility = "hidden";
+        widget.getElementsByClassName("czw_400")[0].style.visibility =
+          "visible";
+        widget.getElementsByClassName("czw_300")[0].style.bottom =
+          (parseInt(y300.getAttribute("y1")) / height) * 100 + "%";
+        widget.getElementsByClassName(
+          "czw__graph__labels__label--first"
+        )[0].innerHTML = "1000 AD";
+        widget.getElementsByClassName(
+          "czw__graph__labels__label--mid"
+        )[0].innerHTML = "1500 AD";
+        widget.getElementsByClassName(
+          "czw__graph__labels__label--end"
+        )[0].innerHTML = "Now";
       }
     });
 
     selectBtns[1].addEventListener("click", function () {
       if (this.classList.contains("active")) {
-        document.getElementsByClassName("chart2000")[0].style.visibility =
+        widget.getElementsByClassName("chart2000")[0].style.visibility =
           "hidden";
-        document.getElementsByClassName("chart20")[0].style.visibility =
+        widget.getElementsByClassName("chart20")[0].style.visibility =
           "visible";
+        widget.getElementsByClassName("czw_400")[0].style.visibility = "hidden";
+        widget.getElementsByClassName("czw_300")[0].style.bottom =
+          (parseInt(y300.getAttribute("y1")) / height) * 80 + "%";
+        widget.getElementsByClassName(
+          "czw__graph__labels__label--first"
+        )[0].innerHTML = start;
+        widget.getElementsByClassName(
+          "czw__graph__labels__label--mid"
+        )[0].innerHTML = mid;
+        widget.getElementsByClassName(
+          "czw__graph__labels__label--end"
+        )[0].innerHTML = end;
       }
     });
 
