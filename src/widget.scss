@@ -121,18 +121,17 @@ $top-boundary: 740px;
     &__wrapper {
       position: relative;
       height: 100%;
-      max-height: 375px;
+      max-height: 500px;
       width: 100%;
-      .chart2000 {
+
+      .chart2000,
+      .chart20 {
         position: absolute;
         width: 100%;
         height: 100%;
       }
 
       .chart20 {
-        position: absolute;
-        width: 100%;
-        height: 100%;
         visibility: hidden;
       }
       @media (min-width: $top-boundary) {
@@ -292,6 +291,8 @@ $top-boundary: 740px;
       color: $dark-grey;
 
       @media (min-width: 430px) {
+        padding: 2.5px 0px;
+
         flex-direction: column;
       }
 
