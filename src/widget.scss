@@ -68,7 +68,7 @@ $top-boundary: 740px;
     flex-direction: column;
     flex-shrink: 0;
     padding: 20px 20px 40px;
-    border-bottom: 1px solid $dark-grey;
+    border-bottom: 1px solid $light-grey;
 
     @media (min-width: 430px) {
       height: 70vh;
@@ -82,7 +82,7 @@ $top-boundary: 740px;
     @media (min-width: $top-boundary) {
       width: 58%;
       height: auto;
-      border-right: 1px solid $dark-grey;
+      border-right: 1px solid $light-grey;
       border-bottom: none;
     }
 
@@ -238,7 +238,7 @@ $top-boundary: 740px;
         height: 60%;
 
         &--avg {
-          border-bottom: 1px solid $dark-grey;
+          border-bottom: 1px solid $light-grey;
         }
       }
 
