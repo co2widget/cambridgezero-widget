@@ -95,6 +95,7 @@ $top-boundary: 740px;
       min-width: 150px;
       border: 1px solid $dark-grey;
       border-radius: 5px;
+      overflow: hidden;
 
       &__text {
         display: flex;
@@ -114,7 +115,6 @@ $top-boundary: 740px;
           background-color: $dark-grey;
           color: $light-grey;
           pointer-events: none;
-          border-radius: 3px;
         }
       }
     }
