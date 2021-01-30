@@ -33,7 +33,7 @@
 // Grab data using fetch - saved files on server
 // Process data
 // Output HTML scructure in correct place with replaced values
-const url = "{{url}}/build/data.json";
+const url = "build/data.json";
 const css = "{{css}}";
 const widget = document.getElementById("czw");
 
