@@ -29,16 +29,16 @@ class Import {
 		// Explde into array
 		$data = explode(',[', $resp);
 		// var_dump($data);
-
+		$change = Import::change($data);
 		// JSON encode for 
 		$return = json_encode([
 			'average' => Import::average($data),
-			'change' => Import::change($data),
+			'change' => $change,
 			'chart' => Import::chart($data),
 			'chart20' => Import::chart20($data),
 			'year' => date('Y'), // Current year to get halfway point easier on chart
 			'date' => date('j M Y'), // Current year to get halfway point easier on chart
-			'scale' => Import::scale($data),
+			'angle' => Import::angle($change),
 		]);
 
 		//print_r($data);
@@ -203,36 +203,55 @@ class Import {
 			unset($result[$k]['count']);
 			unset($result[$k]['value']);
 		}
+
+		$points = array_values($result);
+
 		
 		$offset = 1; // Prevent negative results
 
-		$first = array_values($result)[0]['avg'];
-		
-		$last = (end($result)['avg'] );
+		$first = $points[0]['avg'];
 
-		$width = count($result); // based on number of years
+		// $_SERVER
+		// echo $first; die();
 		
-		$height = $last - $first + $offset;
+		$last = end($points);
+		$last = $last['avg'];
+
+		$width = count($points); // based on number of years
+		$wp = $width / 100;
 		
-		$points = array_values($result);
+		$height = $last - $first;
+		$hp = $height / 100;
 		// var_dump($points);
 		
 		$x = 1; // start at 1 to fit on graph - needs a look
+		
 		$polyline = [];
 		foreach ($points as $point) {
-			$y = $height - ($point['avg'] - $first) - $offset;
-			$polyline[] = "${x},${y}";
+			// $y = $height - ($point['avg'] - $first);
+			$y = (($point['avg'] - $first) / ($last - $first));
+			$y = $y * 100;
+			$v = $first;
+			$left = ((($x/20) * 5) * 20);
+			$bottom = $y;
+			$polyline[] = "<div class=\"chart20__dot\" style=\"left:${left}%;bottom:${bottom}%\" data-avg=\"${v}\"></div>";
 			$x++;
 		}
 
-		var_dump($polyline);
+
 
 		$xaxis = "<line x1=\"0\" x2=\"${width}\" y1=\"${height}\" y2=\"${height}\" stroke=\"none\" vector-effect=\"non-scaling-stroke\"id=\"y400\"></line>";
 
-		$y400 = $height - (400 - $first) - $offset;
-		$y400 = "<line class=\"y400\" x1=\"0\" x2=\"${width}\" y1=\"${y400}\" y2=\"${y400}\" stroke=\"#d0d0d0\" stroke-width=\"1\" vector-effect=\"non-scaling-stroke\"id=\"y400\" stroke-dasharray=\"5,5\"></line>";
+		$y400 = ((400 - $first) / ($last - $first));
+		
 
-		ob_start(); ?><svg viewBox="0 0 <?= $width; ?> <?= $height; ?>" data-height="<?= $height; ?>" class="chart20" preserveAspectRatio="none"><?= $y400; ?><?= $xaxis; ?><polyline fill="none" stroke="#d97400" stroke-width="4" points="<?= implode(' ', $polyline); ?>" vector-effect="non-scaling-stroke" stroke-linecap="round"></polyline></svg><?php 
+		
+		ob_start(); ?><div class="chart20">
+			<div class="chart20__xaxis"></div>
+			<div class="chart20__yaxis"></div>
+			<div class="chart20__400" style="bottom:<?= $y400*100; ?>%"></div>
+			<?= implode(' ', $polyline); ?>
+		</div><?php 
 		return str_replace('+', ' ', urlencode(ob_get_clean()));
 
 		
@@ -240,45 +259,19 @@ class Import {
 	}
 
 
-	private static function scale($data) {
-		$change = floatval(substr(Import::change($data), 1));
+	// Function to calculate the angle for the triangle
+	private static function angle($change = 0) {
 
-		if ($change > "0") {
-			$change = $change + 10;
-		} else {
-			$change = 10 - abs($change);
+		// Circle is maximum +/-225
+		if ($change > 10) {
+			$change = 10;
 		}
 
-
-		$rect = "<rect width=\"100%\" height=\"100%\" x=\"0%\" fill=\"none\" stroke-width=\"0.5\" stroke=\"#3d3d3d\"></rect>";
-		
-		$markers = "<g class=\"markers\">";
-
-		$pc = 0;
-		for ($x = 1; $x <= 9; $x++) {
-			$pc = $pc + 10;
-			if ($x < "4") {
-				$fill = "green";
-			} else if ($x < "7") {
-				$fill = "yellow";
-			} else {
-				$fill = "red";
-			}
-			
-			$pos = $pc . "%";
-			$marker = "<rect fill=$fill x=\"$pos\" y=\"0\" width=\"0.5\" height=\"100%\"></rect>";
-			$markers = $markers . $marker;		
+		if ($change < -10) {
+			$change = -10;
 		}
+		return (225/200) * $change * 10;
 		
-		$markers = $markers . "</g>"; 
-
-		$tri_pos = ($change) / 20 * 100; 
-		$tri_coords_top = ($tri_pos - 2) . ',0 ' . ($tri_pos + 2) . ',0 ' . $tri_pos . ',20';
-		$tri_coords_btm = ($tri_pos - 2) . ',100 ' . ($tri_pos + 2) . ',100 ' . $tri_pos . ',80';
-		$triangle = "<g><polygon fill=\"#3d3d3d\" points=\"$tri_coords_top\"/><polygon fill=\"#3d3d3d\" points=\"$tri_coords_btm\"/></g>";
-
-		ob_start(); ?><svg width="100%" height="20%" viewBox="0 0 100 100" class="scale" preserveAspectRatio="none"><?= $markers; ?><?= $rect; ?><?= $triangle; ?></svg><?php 
-		return str_replace('+', ' ', urlencode(ob_get_clean()));
 	}
 
 	private static function save($path, $return) {
