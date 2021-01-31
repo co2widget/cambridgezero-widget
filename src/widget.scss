@@ -11,6 +11,7 @@ $red: #d97400;
 $dark-grey: #3d3d3d;
 $yellow: #ffce6f;
 $top-boundary: 880px;
+$old-top-boundary: 740px;
 .czw {
   --title: 40px;
   --label: 16px;
@@ -33,6 +34,10 @@ $top-boundary: 880px;
     align-items: stretch; // ensure row items fill columns
     justify-content: space-between; // center widget horizontally
     margin: 0 auto;
+  }
+
+  @media (max-width: $top-boundary) and (min-width: $old-top-boundary) {
+    width: $old-top-boundary;
   }
 
   * {
