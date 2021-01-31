@@ -10,10 +10,11 @@ $grey: #c0c0c0;
 $red: #d97400;
 $dark-grey: #3d3d3d;
 $yellow: #ffce6f;
-$top-boundary: 740px;
+$top-boundary: 880px;
 .czw {
   --title: 40px;
   --label: 16px;
+  --annotation: 32px;
 
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
@@ -225,13 +226,18 @@ $top-boundary: 740px;
       height: 70%;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      align-items: left;
+      justify-content: space-evenly;
       color: $dark-grey;
 
       @media (min-width: 430px) {
         width: 60%;
         height: 100%;
+      }
+
+      @media (max-width: $top-boundary) {
+        justify-content: flex-start;
+        padding: 5px;
       }
 
       @media (min-width: $top-boundary) {
@@ -245,14 +251,22 @@ $top-boundary: 740px;
       }
 
       &--avg {
-        height: 40%;
+        height: 80%;
         width: 100%;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: space-around;
+
+        @media (max-width: $top-boundary) {
+          justify-content: flex-start;
+        }
+
+        @media (min-width: $top-boundary) {
+          margin-left: 20px;
+        }
 
         @media (min-width: $top-boundary) and (max-width: 900px) {
           flex-direction: column;
-          justify-content: center;
+          justify-content: space-around;
         }
       }
     }
@@ -289,6 +303,16 @@ $top-boundary: 740px;
 
     &__avg-value {
       color: black;
+      span {
+        font-size: var(--annotation);
+      }
+      @media (max-width: $top-boundary) {
+        margin-top: auto;
+        margin-bottom: auto;
+        span {
+          font-size: var(--title);
+        }
+      }
     }
 
 
