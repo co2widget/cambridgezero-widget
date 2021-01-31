@@ -45,7 +45,8 @@ fetch(url)
     return r.json();
   })
   .then(function (r) {
-    const half = (parseInt(r.year) - 1010) / 2 + 1010;
+    const y = parseInt(r.year);
+    const half = (y - (y/2)) / 2 + (y/2);
     widget.insertAdjacentHTML("beforeEnd", css);
     widget.insertAdjacentHTML(
       "beforeEnd",
@@ -81,20 +82,17 @@ fetch(url)
           <span class="czw__stats__label">7-day average</span>\
           <span class="czw__stats__avg-value">${r.average} ppm</span>\
         </div>\
-        <div class="czw__stats__top czw__stats__top--scale">\
-          <div class="czw__stats__top czw__stats__top--sclabel">\
-            <span class="czw__stats__sclabel">-10</span>\
-            <span class="czw__stats__sclabel">0</span>\
-            <span class="czw__stats__sclabel">+10</span>\
-          </div>\
-        ${decodeURIComponent(r.scale)}
-        <span class="czw__stats__sclabel">ppm</span>\
-        </div>\
       </div>\
       <div class="czw__stats__bottom">\
         <div class="czw__stats__bottom czw__stats__bottom--increase">\
           <span class="czw__stats__label">In last 2 years</span>\
-          <span class="czw__stats__value">${r.change} ppm</span>\
+          <div class="czw__gauge">
+            <svg width="184" height="184" fill="none" xmlns="http://www.w3.org/2000/svg" class="czw__gauge__graphic"><path d="M183.078 93.378a91.217 91.217 0 01-25.609 62.084l-4.592-4.437a84.828 84.828 0 0023.816-57.738l6.385.09z" fill="#E42C2D"/><path d="M93.168.873a91.217 91.217 0 0162.085 25.608l-4.437 4.592A84.832 84.832 0 0093.078 7.258l.09-6.385z" fill="#FEC432"/><path d="M.877 91.003a91.217 91.217 0 0125.678-62.156l4.587 4.442a84.832 84.832 0 00-23.88 57.805l-6.385-.091z" fill="#29BA7B"/><path d="M157.281 28.505a91.219 91.219 0 0125.792 62.008l-6.384.11a84.834 84.834 0 00-23.987-57.668l4.579-4.45z" fill="#F2994A"/><path d="M28.293 26.67A91.217 91.217 0 0190.3.876l.11 6.384a84.832 84.832 0 00-57.668 23.987l-4.45-4.579z" fill="#6ED759"/><path d="M26.668 155.876A91.215 91.215 0 01.877 93.891l6.384-.112a84.832 84.832 0 0023.986 57.647l-4.579 4.45z" fill="#009299"/></svg>
+            <span class="czw__gauge__arrow" style="transform:rotate(${r.angle}deg)">
+              <svg width="23" height="104" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.5 24L2.407 6h18.186L11.5 24z" fill="#fff" stroke="#3F3F3F" stroke-width="4" stroke-linejoin="round"/></svg>
+            </span>
+            <span class="czw__stats__value"><span>${r.change}</span><br>ppm</span>\
+          </div>
         </div>\
       </div>\
  		</div>`
@@ -123,6 +121,8 @@ fetch(url)
       if (this.classList.contains("active")) {
         widget.getElementsByClassName("chart2000")[0].style.visibility =
           "visible";
+        widget.getElementsByClassName("czw__graph__latest")[0].style.visibility =
+          "visible";
         widget.getElementsByClassName("chart20")[0].style.visibility = "hidden";
         widget.getElementsByClassName("czw_400")[0].style.visibility =
           "visible";
@@ -143,6 +143,8 @@ fetch(url)
     selectBtns[1].addEventListener("click", function () {
       if (this.classList.contains("active")) {
         widget.getElementsByClassName("chart2000")[0].style.visibility =
+          "hidden";
+        widget.getElementsByClassName("czw__graph__latest")[0].style.visibility =
           "hidden";
         widget.getElementsByClassName("chart20")[0].style.visibility =
           "visible";
