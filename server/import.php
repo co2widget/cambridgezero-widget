@@ -161,7 +161,6 @@ class Import {
 
 		// generate array of last 20 years not including this year
 		$years = range($lastyear, $lastyear - 19);
-	
 		$x = 0;
 		$points = [];
 		$count = count($data);
@@ -185,26 +184,15 @@ class Import {
 		});
 
 		// sum values for each of 20 years and divide by respective counts to get avg
-		foreach ($data20 as $val) {
-			if (!isset($result[$val['year']]))
-			{
-				$result[$val['year']]["count"] = 1;
-			}
-			else{
-				$result[$val['year']]['value'] += $val['value'];
-				$result[$val['year']]["count"] ++;
-			}
-		}
-
-		
-		// calculate avg key and remove excess keys
-		foreach($result as $k => $v) {
-			$result[$k]['avg'] = $v['value']/$v['count'];
-			unset($result[$k]['count']);
-			unset($result[$k]['value']);
-		}
-
-		$points = array_values($result);
+                $co2byyear = array();
+                foreach ($data20 as $val) {
+                    $co2byyear[$val['year']][] = $val['value'];
+                }
+                $avgs = array();
+                foreach($co2byyear as $year => $vals){
+                    $avgs[$year] = array("avg" => $year, array_sum($vals)/count($vals));
+                }
+		$points = array_values($avgs);
 
 		
 		$offset = 1; // Prevent negative results
