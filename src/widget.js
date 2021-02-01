@@ -56,7 +56,7 @@ fetch(url)
        </div>\
 		 <div class="czw__graph">\
 			 <div class="czw__graph__selector">\
-			 	<span class="czw__graph__selector__text active">2000 yrs</span>\
+			 	<span class="czw__graph__selector__text active">1000 yrs</span>\
 				<span class="czw__graph__selector__text ">20 yrs</span>\		 
 			 </div>\
             <div class="czw__graph__wrapper">\
