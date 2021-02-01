@@ -336,6 +336,18 @@ $top-boundary: 740px;
     position: relative;
     height: 208px;
     width: 208px;
+
+    &::before {
+      content: "";
+      height: 18px;
+      width: 1px;
+      position: absolute;
+      top: 7px;
+      left: 50%;
+      background: $dark-grey;
+      transform: translateX(-75%);
+    }
+
     &__graphic {
       height: 184px;
       width: 184px;

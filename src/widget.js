@@ -34,7 +34,7 @@
 // Process data
 // Output HTML scructure in correct place with replaced values
 const url = "{{url}}/build/data.json";
-const css = "{{css}}";
+const css = `{{css}}`;
 const widget = document.getElementById("czw");
 
 fetch(url)
