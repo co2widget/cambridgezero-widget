@@ -262,12 +262,18 @@ $old-top-boundary: 740px;
         flex-direction: column;
         justify-content: space-around;
 
+        .ppm {
+          font-weight: lighter;
+          font-size: 130%;
+          padding-left: 5px;
+        }
+
         @media (max-width: $top-boundary) {
           justify-content: flex-start;
         }
 
         @media (min-width: $top-boundary) {
-          margin-left: 20px;
+          padding-left: 20px;
         }
 
         @media (min-width: $top-boundary) and (max-width: 900px) {
@@ -363,7 +369,7 @@ $old-top-boundary: 740px;
       left: 0;
       height: 1px;
       width: 100%;
-      border-top: 1px dashed $light-grey;
+      border-top: 1.8px dashed $light-grey;
     }
   }
 
@@ -371,6 +377,7 @@ $old-top-boundary: 740px;
     position: relative;
     height: 208px;
     width: 208px;
+    margin-left: 12px;
 
     &::before {
       content: '';
@@ -403,6 +410,13 @@ $old-top-boundary: 740px;
         left: 50%;
         transform: translateX(-50%);
       }
+    }
+    .ppm {
+      display: block;
+      font-size: 26px;
+      font-weight: lighter;
+      margin-top: -10px;
+      margin-left: -20px;
     }
   }
 

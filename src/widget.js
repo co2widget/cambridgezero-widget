@@ -33,7 +33,7 @@
 // Grab data using fetch - saved files on server
 // Process data
 // Output HTML scructure in correct place with replaced values
-const url = "{{url}}/build/data.json";
+const url = "build/data.json";
 const css = `{{css}}`;
 const widget = document.getElementById("czw");
 
@@ -80,7 +80,7 @@ fetch(url)
       <div class="czw__stats__top">\
         <div class="czw__stats__top czw__stats__top--avg">\
           <span class="czw__stats__label">7-day average</span>\
-          <span class="czw__stats__avg-value"><span>${r.average}</span>ppm</span>\
+          <span class="czw__stats__avg-value"><span>${r.average}</span><span class="ppm">ppm</span></span>\
         </div>\
       </div>\
       <div class="czw__stats__bottom">\
@@ -91,7 +91,7 @@ fetch(url)
             <span class="czw__gauge__arrow" style="transform:rotate(${r.angle}deg)">
               <svg width="23" height="104" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.5 24L2.407 6h18.186L11.5 24z" fill="#fff" stroke="#3F3F3F" stroke-width="4" stroke-linejoin="round"/></svg>
             </span>
-            <span class="czw__stats__value"><span>${r.change}</span><br>ppm</span>\
+            <span class="czw__stats__value"><span>${r.change}</span><span class="ppm">ppm</span></span>\
           </div>
         </div>\
       </div>\
@@ -117,6 +117,7 @@ fetch(url)
       });
     }
 
+      //long term data view
     selectBtns[0].addEventListener("click", function () {
       if (this.classList.contains("active")) {
         widget.getElementsByClassName("chart2000")[0].style.visibility =
@@ -139,7 +140,7 @@ fetch(url)
         )[0].innerHTML = "Now";
       }
     });
-
+//last 20 years view
     selectBtns[1].addEventListener("click", function () {
       if (this.classList.contains("active")) {
         widget.getElementsByClassName("chart2000")[0].style.visibility =
