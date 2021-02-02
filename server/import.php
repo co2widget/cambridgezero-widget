@@ -188,12 +188,10 @@ class Import {
                 foreach ($data20 as $val) {
                     $co2byyear[$val['year']][] = $val['value'];
                 }
-                $avgs = array();
+                $points = array();
                 foreach($co2byyear as $year => $vals){
-                    $avgs[$year] = array("avg" => $year, array_sum($vals)/count($vals));
+                    $points[] = array("year" => $year, "avg" => array_sum($vals)/count($vals));
                 }
-		$points = array_values($avgs);
-
 		
 		$offset = 1; // Prevent negative results
 
@@ -203,7 +201,8 @@ class Import {
 		// echo $first; die();
 		
 		$last = end($points);
-		$last = $last['avg'];
+                $last = $last['avg'];
+                reset($points);
 
 		$width = count($points); // based on number of years
 		$wp = $width / 100;
@@ -219,10 +218,9 @@ class Import {
 			// $y = $height - ($point['avg'] - $first);
 			$y = (($point['avg'] - $first) / ($last - $first));
 			$y = $y * 100;
-			$v = $first;
 			$left = ((($x/20) * 5) * 20);
 			$bottom = $y;
-			$polyline[] = "<div class=\"chart20__dot\" style=\"left:${left}%;bottom:${bottom}%\" data-avg=\"${v}\"></div>";
+			$polyline[] = "<div class=\"chart20__dot\" style=\"left:${left}%;bottom:${bottom}%\" data-avg=\"${point['avg']}\" data-year=\"${point['year']}\"></div>";
 			$x++;
 		}
 
@@ -231,13 +229,13 @@ class Import {
 		$xaxis = "<line x1=\"0\" x2=\"${width}\" y1=\"${height}\" y2=\"${height}\" stroke=\"none\" vector-effect=\"non-scaling-stroke\"id=\"y400\"></line>";
 
 		$y400 = ((400 - $first) / ($last - $first));
-		
-
+                $y380 = ((380 - $first) / ($last - $first));
 		
 		ob_start(); ?><div class="chart20">
 			<div class="chart20__xaxis"></div>
 			<div class="chart20__yaxis"></div>
 			<div class="chart20__400" style="bottom:<?= $y400*100; ?>%"></div>
+                        <div class="chart20__380" style="bottom:<?= $y380*100; ?>%"></div>
 			<?= implode(' ', $polyline); ?>
 		</div><?php 
 		return str_replace('+', ' ', urlencode(ob_get_clean()));

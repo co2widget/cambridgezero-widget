@@ -66,6 +66,7 @@ fetch(url)
 					 <div class="czw__graph__labels czw__graph__labels--y">\ 
 					 	 <span class="czw__graph__labels__label czw_400">300 ppm</span>\
     					 <span class="czw__graph__labels__label czw_300">400 ppm</span>\
+    					 <span class="czw__graph__labels__label czw_380">380 ppm</span>\
     			 	</div>\ 
     				<div class="czw__graph__labels czw__graph__labels--x">\ 
     					 <span class="czw__graph__labels__label czw__graph__labels__label--first">1000 AD</span>\
@@ -125,8 +126,8 @@ fetch(url)
         widget.getElementsByClassName("czw__graph__latest")[0].style.visibility =
           "visible";
         widget.getElementsByClassName("chart20")[0].style.visibility = "hidden";
-        widget.getElementsByClassName("czw_400")[0].style.visibility =
-          "visible";
+        widget.getElementsByClassName("czw_400")[0].style.visibility = "visible";
+        widget.getElementsByClassName("czw_380")[0].style.visibility ="hidden";
         widget.getElementsByClassName("czw_300")[0].style.bottom =
           (parseInt(y300.getAttribute("y1")) / height) * 100 + "%";
         widget.getElementsByClassName(
@@ -149,9 +150,10 @@ fetch(url)
           "hidden";
         widget.getElementsByClassName("chart20")[0].style.visibility =
           "visible";
-        widget.getElementsByClassName("czw_400")[0].style.visibility = "hidden";
-        widget.getElementsByClassName("czw_300")[0].style.bottom =
-          (parseInt(y300.getAttribute("y1")) / height) * 80 + "%";
+        widget.getElementsByClassName("czw_380")[0].style.visibility = "visible"
+        widget.getElementsByClassName("czw_400")[0].style.visibility = "hidden"; //the 400 and 300 class names seem to be the wrong way around?
+        widget.getElementsByClassName("czw_380")[0].style.bottom = "17%"; // would be good to make this calculated from the data...
+        widget.getElementsByClassName("czw_300")[0].style.bottom = (parseInt(y300.getAttribute("y1")) / height) * 80 + "%";
         widget.getElementsByClassName(
           "czw__graph__labels__label--first"
         )[0].innerHTML = start;
@@ -173,6 +175,7 @@ fetch(url)
       (parseInt(y300.getAttribute("y1")) / height) * 100 + "%";
     widget.getElementsByClassName("czw_400")[0].style.bottom =
       (parseInt(y400.getAttribute("y1")) / height) * 100 + "%";
+    widget.getElementsByClassName("czw_380")[0].style.visibility ="hidden";
   })
   .catch(function (e) {
     // Handle error responses

@@ -364,10 +364,10 @@ $old-top-boundary: 740px;
         flash 0.5s linear 2s infinite forwards;
     }
 
-    &__400 {
+    &__400, &__380 {
       position: absolute;
       left: 0;
-      height: 1px;
+      height: 10px;
       width: 100%;
       border-top: 1.8px dashed $light-grey;
     }
