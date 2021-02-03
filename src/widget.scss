@@ -17,8 +17,8 @@ $old-top-boundary: 740px;
   --label: 16px;
   --annotation: 32px;
 
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center; // center column horizontally
@@ -143,6 +143,7 @@ $old-top-boundary: 740px;
       .chart20 {
         visibility: hidden;
       }
+
       @media (min-width: $top-boundary) {
         height: 230px;
         margin-top: 20px;
@@ -261,12 +262,18 @@ $old-top-boundary: 740px;
         flex-direction: column;
         justify-content: space-around;
 
+        .ppm {
+          font-weight: lighter;
+          font-size: 130%;
+          padding-left: 5px;
+        }
+
         @media (max-width: $top-boundary) {
           justify-content: flex-start;
         }
 
         @media (min-width: $top-boundary) {
-          margin-left: 20px;
+          padding-left: 20px;
         }
 
         @media (min-width: $top-boundary) and (max-width: 900px) {
@@ -320,7 +327,6 @@ $old-top-boundary: 740px;
       }
     }
 
-
     &__value {
       color: black;
       position: absolute;
@@ -329,7 +335,7 @@ $old-top-boundary: 740px;
       transform: translate(-50%, -50%);
       text-align: right;
       span {
-          font-size: var(--title);
+        font-size: var(--title);
       }
       // @media (min-width: 430px) {
       //   color: $dark-grey;
@@ -338,8 +344,6 @@ $old-top-boundary: 740px;
       // }
     }
   }
-
-
 
   .chart20 {
     &__dot {
@@ -351,13 +355,21 @@ $old-top-boundary: 740px;
       margin-top: -5px;
       margin-left: -5px;
     }
+    &__dot:last-child {
+      border: 2px solid $red;
+      border-radius: 50%;
+      background: #fff;
+      opacity: 0;
+      animation: show 0.5s linear 1.75s forwards,
+        flash 0.5s linear 2s infinite forwards;
+    }
 
-    &__400 {
+    &__400, &__380 {
       position: absolute;
       left: 0;
-      height: 1px;
+      height: 10px;
       width: 100%;
-      border-top: 1px dashed $light-grey;
+      border-top: 1.8px dashed $light-grey;
     }
   }
 
@@ -365,6 +377,19 @@ $old-top-boundary: 740px;
     position: relative;
     height: 208px;
     width: 208px;
+    margin-left: 12px;
+
+    &::before {
+      content: '';
+      height: 18px;
+      width: 1px;
+      position: absolute;
+      top: 7px;
+      left: 50%;
+      background: $dark-grey;
+      transform: translateX(-75%);
+    }
+
     &__graphic {
       height: 184px;
       width: 184px;
@@ -386,6 +411,13 @@ $old-top-boundary: 740px;
         transform: translateX(-50%);
       }
     }
+    .ppm {
+      display: block;
+      font-size: 26px;
+      font-weight: lighter;
+      margin-top: -10px;
+      margin-left: -20px;
+    }
   }
 
   polyline {
@@ -394,8 +426,6 @@ $old-top-boundary: 740px;
     animation: dash 3s linear forwards;
   }
 }
-
-
 
 @keyframes dash {
   to {

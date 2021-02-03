@@ -161,7 +161,6 @@ class Import {
 
 		// generate array of last 20 years not including this year
 		$years = range($lastyear, $lastyear - 19);
-	
 		$x = 0;
 		$points = [];
 		$count = count($data);
@@ -185,27 +184,14 @@ class Import {
 		});
 
 		// sum values for each of 20 years and divide by respective counts to get avg
-		foreach ($data20 as $val) {
-			if (!isset($result[$val['year']]))
-			{
-				$result[$val['year']]["count"] = 1;
-			}
-			else{
-				$result[$val['year']]['value'] += $val['value'];
-				$result[$val['year']]["count"] ++;
-			}
-		}
-
-		
-		// calculate avg key and remove excess keys
-		foreach($result as $k => $v) {
-			$result[$k]['avg'] = $v['value']/$v['count'];
-			unset($result[$k]['count']);
-			unset($result[$k]['value']);
-		}
-
-		$points = array_values($result);
-
+                $co2byyear = array();
+                foreach ($data20 as $val) {
+                    $co2byyear[$val['year']][] = $val['value'];
+                }
+                $points = array();
+                foreach($co2byyear as $year => $vals){
+                    $points[] = array("year" => $year, "avg" => array_sum($vals)/count($vals));
+                }
 		
 		$offset = 1; // Prevent negative results
 
@@ -215,7 +201,8 @@ class Import {
 		// echo $first; die();
 		
 		$last = end($points);
-		$last = $last['avg'];
+                $last = $last['avg'];
+                reset($points);
 
 		$width = count($points); // based on number of years
 		$wp = $width / 100;
@@ -231,10 +218,9 @@ class Import {
 			// $y = $height - ($point['avg'] - $first);
 			$y = (($point['avg'] - $first) / ($last - $first));
 			$y = $y * 100;
-			$v = $first;
 			$left = ((($x/20) * 5) * 20);
 			$bottom = $y;
-			$polyline[] = "<div class=\"chart20__dot\" style=\"left:${left}%;bottom:${bottom}%\" data-avg=\"${v}\"></div>";
+			$polyline[] = "<div class=\"chart20__dot\" style=\"left:${left}%;bottom:${bottom}%\" data-avg=\"${point['avg']}\" data-year=\"${point['year']}\"></div>";
 			$x++;
 		}
 
@@ -243,13 +229,13 @@ class Import {
 		$xaxis = "<line x1=\"0\" x2=\"${width}\" y1=\"${height}\" y2=\"${height}\" stroke=\"none\" vector-effect=\"non-scaling-stroke\"id=\"y400\"></line>";
 
 		$y400 = ((400 - $first) / ($last - $first));
-		
-
+                $y380 = ((380 - $first) / ($last - $first));
 		
 		ob_start(); ?><div class="chart20">
 			<div class="chart20__xaxis"></div>
 			<div class="chart20__yaxis"></div>
 			<div class="chart20__400" style="bottom:<?= $y400*100; ?>%"></div>
+                        <div class="chart20__380" style="bottom:<?= $y380*100; ?>%"></div>
 			<?= implode(' ', $polyline); ?>
 		</div><?php 
 		return str_replace('+', ' ', urlencode(ob_get_clean()));

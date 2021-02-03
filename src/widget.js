@@ -34,7 +34,7 @@
 // Process data
 // Output HTML scructure in correct place with replaced values
 const url = "build/data.json";
-const css = "{{css}}";
+const css = `{{css}}`;
 const widget = document.getElementById("czw");
 
 fetch(url)
@@ -56,7 +56,7 @@ fetch(url)
        </div>\
 		 <div class="czw__graph">\
 			 <div class="czw__graph__selector">\
-			 	<span class="czw__graph__selector__text active">2000 yrs</span>\
+			 	<span class="czw__graph__selector__text active">1000 yrs</span>\
 				<span class="czw__graph__selector__text ">20 yrs</span>\		 
 			 </div>\
             <div class="czw__graph__wrapper">\
@@ -66,6 +66,7 @@ fetch(url)
 					 <div class="czw__graph__labels czw__graph__labels--y">\ 
 					 	 <span class="czw__graph__labels__label czw_400">300 ppm</span>\
     					 <span class="czw__graph__labels__label czw_300">400 ppm</span>\
+    					 <span class="czw__graph__labels__label czw_380">380 ppm</span>\
     			 	</div>\ 
     				<div class="czw__graph__labels czw__graph__labels--x">\ 
     					 <span class="czw__graph__labels__label czw__graph__labels__label--first">1000 AD</span>\
@@ -80,7 +81,7 @@ fetch(url)
       <div class="czw__stats__top">\
         <div class="czw__stats__top czw__stats__top--avg">\
           <span class="czw__stats__label">7-day average</span>\
-          <span class="czw__stats__avg-value"><span>${r.average}</span>ppm</span>\
+          <span class="czw__stats__avg-value"><span>${r.average}</span><span class="ppm">ppm</span></span>\
         </div>\
       </div>\
       <div class="czw__stats__bottom">\
@@ -91,7 +92,7 @@ fetch(url)
             <span class="czw__gauge__arrow" style="transform:rotate(${r.angle}deg)">
               <svg width="23" height="104" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.5 24L2.407 6h18.186L11.5 24z" fill="#fff" stroke="#3F3F3F" stroke-width="4" stroke-linejoin="round"/></svg>
             </span>
-            <span class="czw__stats__value"><span>${r.change}</span><br>ppm</span>\
+            <span class="czw__stats__value"><span>${r.change}</span><span class="ppm">ppm</span></span>\
           </div>
         </div>\
       </div>\
@@ -117,6 +118,7 @@ fetch(url)
       });
     }
 
+      //long term data view
     selectBtns[0].addEventListener("click", function () {
       if (this.classList.contains("active")) {
         widget.getElementsByClassName("chart2000")[0].style.visibility =
@@ -124,8 +126,8 @@ fetch(url)
         widget.getElementsByClassName("czw__graph__latest")[0].style.visibility =
           "visible";
         widget.getElementsByClassName("chart20")[0].style.visibility = "hidden";
-        widget.getElementsByClassName("czw_400")[0].style.visibility =
-          "visible";
+        widget.getElementsByClassName("czw_400")[0].style.visibility = "visible";
+        widget.getElementsByClassName("czw_380")[0].style.visibility ="hidden";
         widget.getElementsByClassName("czw_300")[0].style.bottom =
           (parseInt(y300.getAttribute("y1")) / height) * 100 + "%";
         widget.getElementsByClassName(
@@ -139,7 +141,7 @@ fetch(url)
         )[0].innerHTML = "Now";
       }
     });
-
+//last 20 years view
     selectBtns[1].addEventListener("click", function () {
       if (this.classList.contains("active")) {
         widget.getElementsByClassName("chart2000")[0].style.visibility =
@@ -148,9 +150,10 @@ fetch(url)
           "hidden";
         widget.getElementsByClassName("chart20")[0].style.visibility =
           "visible";
-        widget.getElementsByClassName("czw_400")[0].style.visibility = "hidden";
-        widget.getElementsByClassName("czw_300")[0].style.bottom =
-          (parseInt(y300.getAttribute("y1")) / height) * 80 + "%";
+        widget.getElementsByClassName("czw_380")[0].style.visibility = "visible"
+        widget.getElementsByClassName("czw_400")[0].style.visibility = "hidden"; //the 400 and 300 class names seem to be the wrong way around?
+        widget.getElementsByClassName("czw_380")[0].style.bottom = "17%"; // would be good to make this calculated from the data...
+        widget.getElementsByClassName("czw_300")[0].style.bottom = (parseInt(y300.getAttribute("y1")) / height) * 80 + "%";
         widget.getElementsByClassName(
           "czw__graph__labels__label--first"
         )[0].innerHTML = start;
@@ -172,6 +175,7 @@ fetch(url)
       (parseInt(y300.getAttribute("y1")) / height) * 100 + "%";
     widget.getElementsByClassName("czw_400")[0].style.bottom =
       (parseInt(y400.getAttribute("y1")) / height) * 100 + "%";
+    widget.getElementsByClassName("czw_380")[0].style.visibility ="hidden";
   })
   .catch(function (e) {
     // Handle error responses
