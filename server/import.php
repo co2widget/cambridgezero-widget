@@ -262,5 +262,6 @@ class Import {
 
 	private static function save($path, $return) {
 		file_put_contents(__DIR__.'/../'.$path, $return);
+		exec('npm run build');
 	}
 }

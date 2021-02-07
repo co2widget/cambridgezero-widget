@@ -37,14 +37,8 @@ const url = "build/data.json";
 const css = `{{css}}`;
 const widget = document.getElementById("czw");
 
-fetch(url)
-  .then(function (r) {
-    if (!r.ok) {
-      throw Error(r);
-    }
-    return r.json();
-  })
-  .then(function (r) {
+Promise.resolve(JSON.parse('{{data}}'))
+    .then(function (r) {
     const y = parseInt(r.year);
     const half = (y - (y/2)) / 2 + (y/2);
     widget.insertAdjacentHTML("beforeEnd", css);
