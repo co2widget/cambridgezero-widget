@@ -210,7 +210,7 @@ $old-top-boundary: 740px;
 
   &__stats {
     width: 100%;
-    height: 160px;
+    min-height: 160px;
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
