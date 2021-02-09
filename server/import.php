@@ -50,7 +50,7 @@ class Import {
 
 	private static function average($data) {
                 
-		return floatval(number_format(Import::thirtyDayMovingAverage(0, array_reverse($data)), 1, '.', ''));
+		return floatval(number_format(Import::sevenDayMovingAverage(0, array_reverse($data)), 1, '.', ''));
         }
         private static function getCO2Float($str) {
             return  floatval(array_pop(explode('),',$str)));
@@ -60,6 +60,9 @@ class Import {
             return array_sum($floats)/count($floats);
         }
 
+        private static function sevenDayMovingAverage($startIndex, $data){
+            return Import::mean(array_map('Import::getCO2Float', array_slice($data, $startIndex, 7)));
+        }
         private static function thirtyDayMovingAverage($startIndex, $data){
             return Import::mean(array_map('Import::getCO2Float', array_slice($data, $startIndex, 30)));
         }

@@ -74,7 +74,7 @@ Promise.resolve(JSON.parse('{{data}}'))
      <div class="czw__stats">\
       <div class="czw__stats__top">\
         <div class="czw__stats__top czw__stats__top--avg">\
-          <span class="czw__stats__label">30-day average</span>\
+          <span class="czw__stats__label">7-day average</span>\
           <span class="czw__stats__avg-value"><span>${r.average}</span><span class="ppm">ppm</span></span>\
         </div>\
       </div>\
