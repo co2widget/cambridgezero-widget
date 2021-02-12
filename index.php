@@ -6,7 +6,9 @@
     <title>Widget demo</title>
 </head>
 <body>
-<div id="czw" class="czw"></div>
+<div class="para">
+    <div id="czw" class="czw"></div>
+</div>
 <script src="build/widget.min.js" defer></script>
 <div class="explanation-text">
     <div class="para">
