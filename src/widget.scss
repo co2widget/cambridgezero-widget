@@ -24,6 +24,9 @@ $old-top-boundary: 740px;
     margin-right: 50px;
   }
 }
+.para {
+  margin-top: 100px;
+}
 
 .czw {
   --title: 40px;
@@ -41,12 +44,13 @@ $old-top-boundary: 740px;
   border: 1px solid $light-grey;
   border-radius: 12px;
   font-size: var(--label);
+  margin-top: 100px;
 
   @media (min-width: $top-boundary) {
     flex-direction: row;
     align-items: stretch; // ensure row items fill columns
     justify-content: space-between; // center widget horizontally
-    margin: 0 auto;
+    margin: 100px auto;
   }
 
   @media (max-width: $top-boundary) and (min-width: $old-top-boundary) {
