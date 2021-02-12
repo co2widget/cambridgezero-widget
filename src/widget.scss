@@ -255,7 +255,7 @@ $old-top-boundary: 740px;
 
       @media (min-width: 430px) {
         width: 60%;
-        height: 100%;
+        height: 31.59%;
       }
 
       @media (max-width: $top-boundary) {
@@ -265,7 +265,7 @@ $old-top-boundary: 740px;
 
       @media (min-width: $top-boundary) {
         width: 100%;
-        height: 100%;
+        height: 31.59%;
         flex-shrink: 1;
 
         &--avg {
@@ -318,7 +318,7 @@ $old-top-boundary: 740px;
         justify-content: center;
         align-items: flex-start;
         margin-left: 10px;
-        height: 100%;
+        height: 68.41%;
       }
     }
 
