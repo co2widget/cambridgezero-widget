@@ -49,27 +49,30 @@ class Import {
 	}
 
 	private static function average($data) {
-		$data = array_reverse($data);
+                
+		return floatval(number_format(Import::sevenDayMovingAverage(0, array_reverse($data)), 1, '.', ''));
+        }
+        private static function getCO2Float($str) {
+            return  floatval(array_pop(explode('),',$str)));
+        }
 
-		$x = 0;
-		$total = 0;
-		while ($x < 7) {
-			$i = explode('),', $data[$x]);
-			$total += floatval($i[1]);
-			$x++;
-		}
+        private static function mean($floats){
+            return array_sum($floats)/count($floats);
+        }
 
-		return floatval(number_format($total/$x, 1, '.', ''));
-	}
+        private static function sevenDayMovingAverage($startIndex, $data){
+            return Import::mean(array_map('Import::getCO2Float', array_slice($data, $startIndex, 7)));
+        }
+        private static function thirtyDayMovingAverage($startIndex, $data){
+            return Import::mean(array_map('Import::getCO2Float', array_slice($data, $startIndex, 30)));
+        }
 
 	private static function change($data) {
 		$data = array_reverse($data);
 
-		$latest = explode('),', $data[0]);
-		$twoyears = explode('),', $data[729]);
-
-		$change = floatval($latest[1]) - floatval($twoyears[1]);
-
+		$latest = Import::thirtyDayMovingAverage(0, $data);
+		$twoYears = Import::thirtyDayMovingAverage(729, $data);
+		$change = $latest - $twoYears;
 
 		if ($change < 0) {
 			$char = '-';
@@ -79,7 +82,6 @@ class Import {
 		}
 		$change = number_format($change, 1, '.', '');
 		return $char.$change;
-
 	}
 
 	private static function chart($data) {
@@ -190,7 +192,7 @@ class Import {
                 }
                 $points = array();
                 foreach($co2byyear as $year => $vals){
-                    $points[] = array("year" => $year, "avg" => array_sum($vals)/count($vals));
+                    $points[] = array("year" => $year, "avg" => Import::mean($vals));
                 }
 		
 		$offset = 1; // Prevent negative results
