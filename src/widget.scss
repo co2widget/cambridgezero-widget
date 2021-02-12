@@ -44,7 +44,6 @@ $old-top-boundary: 740px;
   border: 1px solid $light-grey;
   border-radius: 12px;
   font-size: var(--label);
-  margin-top: 100px;
 
   @media (min-width: $top-boundary) {
     flex-direction: row;
