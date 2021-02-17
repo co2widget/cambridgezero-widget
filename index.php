@@ -33,7 +33,7 @@
         <p>Developers: Chris Butterworth, Richard Coates, Rowland Williams, Keith Alexander, Erika Antiche Garzón, Max Palmer</p>
         <p>Designers: Bella Soares, Chris Butterworth</p>
         <p>Special thanks: Gary Fearnall</p>
-        <p>The widget is endorsed by the Grantham Institute, the 2 Degrees Institute, Scripps and Reading University’s Department of Meteorology.</p>
+        <p>The widget is endorsed by the Grantham Institute, the 2 Degrees Institute, Scripps Institution of Oceanography at UC San Diego and Reading University’s Department of Meteorology.</p>
         <p>The original report, with more details about the widget, its ideation, and suggestions for further communication, is available <a href="https://www.matthewshribman.com/live-co2">here</a>.</p>
     </div>
     <div class="para">
