@@ -63,16 +63,16 @@ class Import {
         private static function sevenDayMovingAverage($startIndex, $data){
             return Import::mean(array_map('Import::getCO2Float', array_slice($data, $startIndex, 7)));
         }
-        private static function thirtyDayMovingAverage($startIndex, $data){
-            return Import::mean(array_map('Import::getCO2Float', array_slice($data, $startIndex, 30)));
+        private static function fourteenDayMovingAverage($startIndex, $data){
+            return Import::mean(array_map('Import::getCO2Float', array_slice($data, $startIndex, 14)));
         }
 
 	private static function change($data) {
 		$data = array_reverse($data);
-
-		$latest = Import::thirtyDayMovingAverage(0, $data);
-		$twoYears = Import::thirtyDayMovingAverage(729, $data);
-		$change = $latest - $twoYears;
+                
+    		$latest = Import::fourteenDayMovingAverage(0, $data);
+		$twoYears = Import::fourteenDayMovingAverage(729, $data);
+                $change = $latest - $twoYears;
 
 		if ($change < 0) {
 			$char = '-';

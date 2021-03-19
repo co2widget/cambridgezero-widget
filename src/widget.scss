@@ -13,8 +13,8 @@ $yellow: #ffce6f;
 $top-boundary: 880px;
 $old-top-boundary: 740px;
 .explanation-text {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-  Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
   @media (min-width: $top-boundary) {
     margin-left: $top-boundary / 5;
     margin-right: $top-boundary / 5;
@@ -28,13 +28,28 @@ $old-top-boundary: 740px;
   margin-top: 100px;
 }
 
+.question-mark {
+  color: $dark-grey;
+  border: 1px solid $grey;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  display: inline-block;
+  border-radius: 100%;
+  font-size: 20px;
+  text-align: center;
+  text-decoration: none;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
 .czw {
   --title: 40px;
   --label: 16px;
   --annotation: 32px;
 
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center; // center column horizontally
@@ -228,7 +243,7 @@ $old-top-boundary: 740px;
     width: 100%;
     min-height: 160px;
     display: flex;
-    flex-direction: column;
+    // flex-direction: column;
     flex-shrink: 0;
 
     @media (min-width: 430px) {
@@ -244,7 +259,7 @@ $old-top-boundary: 740px;
     }
 
     &__top {
-      width: 100%;
+      width: 50%;
       height: 70%;
       display: flex;
       flex-direction: column;
@@ -273,10 +288,9 @@ $old-top-boundary: 740px;
       }
 
       &--avg {
-        height: 80%;
+        height: 100%;
         width: 100%;
         flex-direction: column;
-        justify-content: space-around;
 
         .ppm {
           font-weight: lighter;
@@ -305,10 +319,10 @@ $old-top-boundary: 740px;
       align-items: center;
       justify-content: space-around;
       color: $dark-grey;
+      padding: 5px 0px;
 
       @media (min-width: 430px) {
         padding: 2.5px 0px;
-
         flex-direction: column;
       }
 
@@ -318,6 +332,11 @@ $old-top-boundary: 740px;
         align-items: flex-start;
         margin-left: 10px;
         height: 68.41%;
+      }
+
+      &--increase {
+        display: flex;
+        flex-direction: column;
       }
     }
 
@@ -331,6 +350,8 @@ $old-top-boundary: 740px;
 
     &__avg-value {
       color: black;
+      display: flex;
+      flex-direction: column;
       span {
         font-size: var(--annotation);
       }
@@ -340,6 +361,11 @@ $old-top-boundary: 740px;
         span {
           font-size: var(--title);
         }
+      }
+
+      @media (min-width: 430px) {
+        flex-direction: row;
+        align-items: flex-end;
       }
     }
 
@@ -380,7 +406,8 @@ $old-top-boundary: 740px;
         flash 0.5s linear 2s infinite forwards;
     }
 
-    &__400, &__380 {
+    &__400,
+    &__380 {
       position: absolute;
       left: 0;
       height: 10px;
@@ -396,7 +423,7 @@ $old-top-boundary: 740px;
     margin-left: 12px;
 
     &::before {
-      content: '';
+      content: "";
       height: 18px;
       width: 1px;
       position: absolute;
