@@ -12,6 +12,10 @@
 <script src="build/widget.min.js" defer></script>
 <div class="explanation-text">
     <div class="para">
+        <h2>What is ppm?</h2>
+        <p>Just like we use metres to measures distances, we use ppm to measure CO<sub>2</sub> levels. "Ppm" means "parts per million". In other words, 400 ppm means that there are 400 particles of CO<sub>2</sub> for every million particles of air. This might not sound like a lot, but it has a big effect.</p>
+    </div>
+    <div class="para">
         <h2>Why does this exist?</h2>
         <p>The global level of carbon dioxide and its rate of increase are two of the most important factors in deciding the future of our civilisation and life on Earth.</p>
         <p>This widget exists to make these two ideas readily available to anyone in the world, be they a farmer, a lawyer, a child or a retiree.</p>
