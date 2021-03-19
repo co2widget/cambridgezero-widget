@@ -25,7 +25,7 @@
     </div>
     <div class="para">
         <h2>How does it work?</h2>
-        <p>This widget updates daily and is collecting data directly from NOAA.</p>
+        <p>This widget updates daily and is collecting data from the Mauna Loa Observatory.  The measurements are coordinated by the Scripps Institution of Oceanography.  The Mauna Loa Observatory is operated by NOAA.</p>
         <p>The <b>7-day average</b> box shows the average of the last 7 days including today. It updates every day.</p>
         <p>The <b>1000 years</b> graph shows the historical context of CO<sub>2</sub> levels. It updates every day.</p>
         <p>The <b>20 years</b> graph shows the level of CO<sub>2</sub> over the past 20 years, to provide an indication as to whether the rate of increase is slowing down. It updates once annually and does not show a value for the current year.</p>
@@ -38,7 +38,7 @@
         <p>Designers: Bella Soares, Chris Butterworth</p>
         <p>Special thanks: Gary Fearnall</p>
         <p>The widget is endorsed by the Grantham Institute, the 2 Degrees Institute, Scripps Institution of Oceanography at UC San Diego and Reading University’s Department of Meteorology.</p>
-        <p>The original report, with more details about the widget, its ideation, and suggestions for further communication, is available <a href="https://www.matthewshribman.com/live-co2">here</a>.</p>
+        <p>Embed instructions and the original report, containing more details about the widget, its ideation and suggestions for further communication, are both available <a href="https://www.matthewshribman.com/live-co2">here</a>.</p>
     </div>
     <div class="para">
     </div>
