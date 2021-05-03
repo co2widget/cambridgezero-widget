@@ -84,7 +84,7 @@
         line-height: 6vh;
         font-size: 5vh;
         font-family: Arial, Helvetica, sans-serif;
-        position: fixed;
+        position: relative;
         bottom: 39px;
         cursor: pointer;
         margin-left: -10vh;

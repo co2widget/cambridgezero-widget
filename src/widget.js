@@ -90,12 +90,8 @@ Promise.resolve(JSON.parse('{{data}}'))
           </div>
         </div>\
       </div>\
-        <a href="https://co2widget.com">
-        <div class="circleBase questionmark">
-         ?
-        </div>
-        </a>
- 		</div>`
+    </div>\
+    <a href="https://co2widget.com"><div class="circleBase questionmark">?</div></a>`
     );
 
     const svg = widget.getElementsByClassName("chart2000")[0];
