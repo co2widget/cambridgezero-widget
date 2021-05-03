@@ -47,7 +47,7 @@
     </div>
     <div class="para">
     </div>
-    <a ref="https://co2widget.com"></a><div class="circleBase questionmark">
+    <a href="https://co2widget.com"></a><div class="circleBase questionmark">
         ?
     </div></div>
 </div>
@@ -57,18 +57,19 @@
     }
 
     .questionmark {
-        width: 100px;
-        height: 100px;
+        width: 8vh;
+        height: 8vh;
         background: white;
         border: 3px solid grey;
         text-align: center;
         vertical-align: middle;
-        line-height: 100px;
-        font-size: 70px;
+        line-height: 8vh;
+        font-size: 6vh;
         font-family: Arial, Helvetica, sans-serif;
-        position: absolute;
-        bottom: 0;
+        position: fixed;
+        bottom: 39px;
         cursor: pointer;
+        margin-left: -10vh;
     }
 </style>
 </body>
