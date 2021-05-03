@@ -67,11 +67,6 @@
     </div>
     <div class="para">
     </div>
-    <a href="https://co2widget.com">
-        <div class="circleBase questionmark">
-            ?
-        </div>
-    </a>
 </div>
 </div>
 <style>
