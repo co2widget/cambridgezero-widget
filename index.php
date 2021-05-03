@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta property="og:url" content="https://co2widget.com/"/>
     <meta property="og:type" content="website"/>
-    <meta property="og:title" content="CO₂ Widget"/>
-    <meta property="og:description" content="CO₂ PPM Measurement Widget"/>
+    <meta property="og:title" content="The Global CO₂ Widget"/>
+    <meta property="og:description" content="Check the global level of CO₂. A free, Cambridge-backed project."/>
     <meta property="og:image" content="https://co2widget.com/social-image.png"/>
-    <title>CO2 Widget</title>
+    <title>The Global CO₂ Widget</title>
 </head>
 <body>
 <div class="para">
@@ -80,14 +80,14 @@
     }
 
     .questionmark {
-        width: 8vh;
-        height: 8vh;
+        width: 6vh;
+        height: 6vh;
         background: white;
         border: 3px solid grey;
         text-align: center;
         vertical-align: middle;
-        line-height: 8vh;
-        font-size: 6vh;
+        line-height: 6vh;
+        font-size: 5vh;
         font-family: Arial, Helvetica, sans-serif;
         position: fixed;
         bottom: 39px;
