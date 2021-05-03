@@ -51,5 +51,25 @@
         ?
     </div></div>
 </div>
+<style>
+    .circleBase {
+        border-radius: 50%;
+    }
+
+    .questionmark {
+        width: 100px;
+        height: 100px;
+        background: white;
+        border: 3px solid grey;
+        text-align: center;
+        vertical-align: middle;
+        line-height: 100px;
+        font-size: 70px;
+        font-family: Arial, Helvetica, sans-serif;
+        position: absolute;
+        bottom: 0;
+        cursor: pointer;
+    }
+</style>
 </body>
 </html>
