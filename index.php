@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta property="og:url"                content="https://co2widget.com/" />
+    <meta property="og:type"               content="website" />
+    <meta property="og:title"              content="CO₂ Widget" />
+    <meta property="og:description"        content="CO₂ PPM Measurement Widget" />
+    <meta property="og:image"              content="https://co2widget.com/social-image.png" />
     <title>CO2 Widget</title>
 </head>
 <body>
