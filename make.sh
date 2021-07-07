@@ -10,7 +10,7 @@ apt-get install -y curl git
 rm -rf /var/www/html
 mkdir /var/www/html
 chmod 777 /var/www/html
-git clone -b gc-deployment https://rscoates:a0bd981f2385a34ba587d298e8c210f655540cdc@github.com/ChrisButterworth/cambridgezero-widget.git /var/www/html
+git clone -b gc-deployment https://{user}:{auth}@github.com/ChrisButterworth/cambridgezero-widget.git /var/www/html
 
 # Run NPM
 apt-get install -y nodejs npm
