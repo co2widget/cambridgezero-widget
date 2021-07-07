@@ -91,7 +91,7 @@ Promise.resolve(JSON.parse('{{data}}'))
         </div>\
       </div>\
     </div>\
-    );
+    `);
 
     const svg = widget.getElementsByClassName("chart2000")[0];
 
