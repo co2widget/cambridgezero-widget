@@ -51,20 +51,22 @@
             it was on this same day two years ago. This key element of the widget provides a daily update on the
             progress the world is making in reducing the output of CO<sub>2</sub>.</p>
     </div>
-    <div class="para">
-        <h2>Who’s behind it?</h2>
-        <p>This project is led by <a href="http://www.matthewshribman.com/">Matthew Shribman</a> with the support of <a
-                    href="https://www.zero.cam.ac.uk/">Cambridge Zero / University of Cambridge</a>.</p>
-        <p>Developers: Chris Butterworth, Richard Coates, Rowland Williams, Keith Alexander, Erika Antiche Garzón, Max
-            Palmer</p>
-        <p>Designers: Bella Soares, Chris Butterworth</p>
-        <p>Special thanks: Gary Fearnall</p>
-        <p>The widget is endorsed by the Grantham Institute, the 2 Degrees Institute, Scripps Institution of
-            Oceanography at UC San Diego and Reading University’s Department of Meteorology.</p>
-        <p>Embed instructions and the original report, containing more details about the widget, its ideation and
-            suggestions for further communication, are both available <a
-                    href="https://www.matthewshribman.com/live-co2">here</a>.</p>
-    </div>
+    div class="para">
+    <h2>Who’s behind it?</h2>
+    <p>This project is led by <a href="http://www.matthewshribman.com/">Matthew Shribman</a> with the support of <a href="https://www.zero.cam.ac.uk/">Cambridge Zero / University of Cambridge</a>.</p>
+    <p>Developers: Chris Butterworth, Richard Coates, Rowland Williams, Keith Alexander, Erika Antiche Garzón, Max Palmer</p>
+    <p>Designers: Bella Soares, Chris Butterworth</p>
+    <p>Special thanks: Gary Fearnall</p>
+    <p>The widget is endorsed by the Grantham Institute, the 2 Degrees Institute, Scripps and Reading University’s Department of Meteorology.</p>
+</div>
+
+<div class="para">
+    <h2>How can I embed it or get the code to rebrand it?</h2>
+    <p>Embed instructions and the original report, containing more details about the widget, its ideation and suggestions for further communication, are available <a href="https://www.matthewshribman.com/live-co2">here.</a></p>
+    <p>We are giving the code away for free, no strings attached, to organisations with significant audiences, like news publishers and broadcasters. </p>
+    <p>Our aim is to get this information to as many people as possible, so if you'd like to be able to completely rebrand it then please write to <a href="https://www.matthewshribman.com/contact-me">Matthew Shribman's team.</a></p>
+
+</div>
     <div class="para">
     </div>
 </div>
