@@ -25,7 +25,7 @@ sudo apachectl -k restart
 #write out current crontab
 crontab -l > mycron
 #echo new cron into cron file
-echo "0 0 * * * * echo 'syncing server.php' && php /var/www/html server.php" >> mycron
+echo "0 0 * * * echo 'syncing server.php' && php /var/www/html server.php" >> mycron
 #install new cron file
 crontab mycron
 rm mycron
