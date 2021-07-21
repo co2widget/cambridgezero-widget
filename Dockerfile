@@ -11,7 +11,7 @@ RUN git checkout 2af00077fa422c2aa46cff4c48bd15e5ff3bd0f5
 # Get nvm etc
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
 ENV NVM_DIR "/root/.nvm"
-RUN . "$NVM_DIR/nvm.sh" && nvm install 12.18.2 && cd /var/www/html && npm i && npm rebuild node-sass
+RUN . /root/nvm.sh && nvm install 12.18.2 && cd /var/www/html && npm i && npm rebuild node-sass
 ARG URL
 RUN node_modules/.bin/gulp && chmod 777 /var/www/html/build && php server.php
 
