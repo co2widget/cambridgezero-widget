@@ -15,4 +15,4 @@ RUN chmod 777 /var/www/html/build && php server.php && node_modules/.bin/gulp
 EXPOSE 80
 ENTRYPOINT service cron start && echo URL=$URL && \
     echo "0 0,6,12,18 * * * (cd /var/www/html && echo 'syncing server.php'  && php /var/www/html/server.php && npm run build) >/proc/1/fd/1 2>&1" >> mycron ; \
-    crontab mycron ;  php /var/www/html/server.php ; apachectl -k restart ; sleep infinity
+    crontab mycron ; php /var/www/html/server.php && npm run build ; apachectl -k restart ; sleep infinity
