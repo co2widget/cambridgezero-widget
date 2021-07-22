@@ -39,6 +39,7 @@ class Import {
 			'year' => date('Y'), // Current year to get halfway point easier on chart
 			'date' => date('j M Y'), // Current year to get halfway point easier on chart
 			'angle' => Import::angle($change),
+			'buildTime' => date(DATE_RSS),
 		]);
 
 		//print_r($data);
