@@ -10,18 +10,12 @@ apt-get install -y curl git
 rm -rf /var/www/html
 mkdir /var/www/html
 chmod 777 /var/www/html
-git clone https://github.com/co2widget/cambridgezero-widget.git /var/www/html
-git checkout 2af00077fa422c2aa46cff4c48bd15e5ff3bd0f5
+git clone -b gc-deployment https://{user}:{auth}@github.com/ChrisButterworth/cambridgezero-widget.git /var/www/html
 
 # Run NPM
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-nvm install 12.18.2
-nvm use 12.18.2
+apt-get install -y nodejs npm
 cd /var/www/html
 npm i
-npm rebuild node-sass
 URL=co2widget.com node_modules/.bin/gulp
 chmod 777 /var/www/html/build
 php server.php
@@ -31,7 +25,7 @@ sudo apachectl -k restart
 #write out current crontab
 crontab -l > mycron
 #echo new cron into cron file
-echo "0 0,6,12,18 * * * echo 'syncing server.php' && php /var/www/html/server.php && npm run build && apachectl -k restart" >> mycron
+echo "0 0 * * * echo 'syncing server.php' && php /var/www/html server.php" >> mycron
 #install new cron file
 crontab mycron
 rm mycron
