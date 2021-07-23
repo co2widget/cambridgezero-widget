@@ -11,6 +11,6 @@ RUN php server.php && npm i && npm rebuild node-sass
 RUN chmod 777 /var/www/html/build && node_modules/.bin/gulp
 
 EXPOSE 80
-ENTRYPOINT service cron start && echo URL=$URL && \
+ENTRYPOINT service cron start && \
     echo "0 0,6,12,18 * * * (cd /var/www/html && echo 'syncing server.php'  && php /var/www/html/server.php && npm run build) >/proc/1/fd/1 2>&1" >> mycron ; \
     crontab mycron ; php /var/www/html/server.php && npm run build ; apachectl -k restart ; sleep infinity
