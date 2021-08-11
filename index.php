@@ -57,7 +57,7 @@
         <p>Developers: Chris Butterworth, Richard Coates, Rowland Williams, Keith Alexander, Erika Antiche Garzón, Max Palmer, Hugh Simpson</p>
         <p>Designers: Bella Soares, Chris Butterworth</p>
         <p>Special thanks: Gary Fearnall</p>
-        <p>The widget is endorsed by the Grantham Institute, the 2 Degrees Institute, Scripps and Reading University’s Department of Meteorology.</p>
+        <p>The widget is endorsed by the Grantham Institute, the 2 Degrees Institute, Scripps and Reading University’s Department of Meteorology and the World Congress of Science & Factual Producers.</p>
         </div>
 
 <div class="para">
