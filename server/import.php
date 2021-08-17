@@ -27,7 +27,7 @@ class Import {
 		$data = array();
 		preg_match_all($reg, $resp, $data, PREG_SET_ORDER);
 		$more_data = array_map(function ($a) {
-			return array('date' => new DateTimeImmutable($a[1] . '-' . $a[2] . '-' . $a[3]), 'value' => floatval($a[4]));
+			return array('date' => new DateTimeImmutable($a[1] . '-' . ($a[2]+1) . '-' . $a[3]), 'value' => floatval($a[4]));
 		}, $data);
 		return $more_data;
 	}
