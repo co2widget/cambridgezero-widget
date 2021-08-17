@@ -21,25 +21,11 @@ class Import {
 	private static function fetcHistorical() {
 		$url = 'https://www.climatelevels.org/graphs/co2-daily_data.php?callback=1';
 		$reg = "/UTC\((\d+),(\d+),(\d+)\),(\d+\.\d+)/";
-//	    $resp = get($url);
-        // This is probably not gonna change, so might as well avoid the extra curl
-		$resp = file_get_contents("historical_data.txt");
-		$data = array();
-		preg_match_all($reg, $resp, $data, PREG_SET_ORDER);
-		$more_data = array_map(function ($a) {
-			return array('date' => new DateTimeImmutable($a[1] . '-' . ($a[2]+1) . '-' . $a[3]), 'value' => floatval($a[4]));
-		}, $data);
-		return $more_data;
-	}
-
-	private static function fetchLatest() {
-		$url = "https://gml.noaa.gov/webdata/ccgg/trends/co2_mlo_weekly.csv";
-		$reg = "/(\d+-\d+-\d+),(\d+\.\d+)/";
 	    $resp = Import::get($url);
 		$data = array();
 		preg_match_all($reg, $resp, $data, PREG_SET_ORDER);
 		$more_data = array_map(function ($a) {
-			return array('date' => new DateTimeImmutable($a[1]), 'value' => floatval($a[2]));
+			return array('date' => new DateTimeImmutable($a[1] . '-' . ($a[2]+1) . '-' . $a[3]), 'value' => floatval($a[4]));
 		}, $data);
 		return $more_data;
 	}
@@ -49,11 +35,7 @@ class Import {
 			return;
 		}
 
-		$data = array_merge(Import::fetcHistorical(), Import::fetchLatest());
-		usort($data, function ($l, $r) {
-			if ($l['date'] == $r['date']) return 0;
-			return $l['date'] < $r['date'] ? -1 : 1;
-		});
+		$data = Import::fetcHistorical();
 
 		$change = Import::change($data);
 		// JSON encode for
