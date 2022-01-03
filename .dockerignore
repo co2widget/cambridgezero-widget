@@ -1,4 +1,12 @@
-node_modules
-Dockerfile
-.git
-.idea
+**
+!build/.KEEP
+!embed/
+!server/
+!src/
+!demo.html
+!gulpfile.js
+!index.php
+!package.json
+!server.php
+!social-image.png
+!yarn.lock
