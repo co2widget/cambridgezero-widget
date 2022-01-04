@@ -51,7 +51,7 @@ class Import {
             echo "Completed successfully";
 		} catch (Exception $e) {
 			if ($remainingRetries > 0) {
-				echo "Error: " . $e->getMessage() . ". Retrying...";
+				echo "Error: " . $e->getMessage() . ". Retrying...\n";
 				Import::runWithRetries($path, $remainingRetries - 1);
 			} else die($e->getMessage());
 		}
