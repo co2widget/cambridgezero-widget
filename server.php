@@ -2,4 +2,4 @@
 
 include 'server/import.php';
 
-Import::run('build/data.json');
+Import::runWithRetries('build/data.json');

@@ -1,6 +1,9 @@
 <?php
 
 class Import {
+	private static function err($s) {
+		throw new Exception($s);
+	}
 
 	private static function ago($s) {
 		$x = new DateTime();
@@ -21,11 +24,11 @@ class Import {
 	private static function fetcHistorical() {
 		$url = 'https://www.climatelevels.org/graphs/co2-daily_data.php?callback=1';
 		$reg = "/UTC\((\d+),(\d+),(\d+)\),(\d+\.\d+)/";
-	    $resp = Import::get($url);
+		$resp = Import::get($url);
 		$data = array();
 		preg_match_all($reg, $resp, $data, PREG_SET_ORDER);
 		$more_data = array_map(function ($a) {
-			return array('date' => new DateTimeImmutable($a[1] . '-' . ($a[2]+1) . '-' . $a[3]), 'value' => floatval($a[4]));
+			return array('date' => new DateTimeImmutable($a[1] . '-' . ($a[2] + 1) . '-' . $a[3]), 'value' => floatval($a[4]));
 		}, $data);
 		return $more_data;
 	}
@@ -40,6 +43,18 @@ class Import {
 			return array('date' => new DateTimeImmutable($a[1]), 'value' => floatval($a[2]));
 		}, $data);
 		return $more_data;
+	}
+
+	public static function runWithRetries($path = false, $remainingRetries = 3) {
+		try {
+			Import::run($path);
+            echo "Completed successfully";
+		} catch (Exception $e) {
+			if ($remainingRetries > 0) {
+				echo "Error: " . $e->getMessage() . ". Retrying...";
+				Import::runWithRetries($path, $remainingRetries - 1);
+			} else die($e->getMessage());
+		}
 	}
 
 	public static function run($path = false) {
@@ -83,10 +98,10 @@ class Import {
 	private static function rangeAvg($data, $startDate, $endDate) {
 		$range = Import::range($data, $startDate, $endDate);
 		if (empty($range)) {
-			// Have to die here if $range is empty, since the average will be NaN
+			// Have to fail here if $range is empty, since the average will be NaN
 			$startDateStr = $startDate->format(DateTimeInterface::ISO8601);
 			$endDateStr = $endDate->format(DateTimeInterface::ISO8601);
-			die("Unable to find any data for dates between $startDateStr and $endDateStr");
+			Import::err("Unable to find any data for dates between $startDateStr and $endDateStr");
 		}
 		$floats = array_map(function ($x) {
 			return $x['value'];
@@ -124,14 +139,14 @@ class Import {
 			$previousYears = array_filter($data, function ($k) use ($year, $startDate) {
 				return $k['date'] <= $startDate;
 			});
-			// Have to die here if no years exist in data before target year
-			if (empty($previousYears)) die("Unable to find any data for years before $year");
+			// Have to fail here if no years exist in data before target year
+			if (empty($previousYears)) Import::err("Unable to find any data for years before $year");
 			$previousYear = end($previousYears);
 			$nextYears = array_filter($data, function ($k) use ($year, $endDate) {
 				return $k['date'] >= $endDate;
 			});
-			// Have to die here if no years exist in data after target year
-			if (empty($previousYears)) die("Unable to find any data for years after $year");
+			// Have to fail here if no years exist in data after target year
+			if (empty($previousYears)) Import::err("Unable to find any data for years after $year");
 			$nextYear = array_values($nextYears)[0];
 			return (
 					($nextYear['value'] * ($year - Import::getYear($previousYear['date']))) +
