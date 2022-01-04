@@ -1,16 +1,20 @@
-FROM debian:buster-slim
-# Install Git, PHP, Node and NPM
+FROM node:16-alpine
+# Install apache2, php, and required libs for both
 WORKDIR /var/www
-RUN apt-get update && apt-get install -y git cron apache2 php libapache2-mod-php php-curl curl nodejs npm
-RUN rm -rf /var/www/html && mkdir /var/www/html
-WORKDIR /var/www/html
+RUN apk add apache2 apache2-ctl busybox-extras curl php php-curl php-json
+RUN rm -rf /var/www/html /var/www/localhost/htdocs && mkdir /var/www/localhost/htdocs
+WORKDIR /var/www/localhost/htdocs
 # Add the application source code
 ADD . .
-# Build (need the data.json files to run npm install, so even though the values collected here should never be served, we run the php script first)
-RUN php server.php && npm i && npm rebuild node-sass
-RUN chmod 777 /var/www/html/build && node_modules/.bin/gulp
+# Fetch npm deps
+RUN npm i -g gulp && yarn install
+# Build initial data
+RUN php server.php
+RUN chmod 777 /var/www/localhost/htdocs/build && node_modules/.bin/gulp
+# Set index page
+RUN sed  -i 's/DirectoryIndex index.html/DirectoryIndex index.php/' /etc/apache2/httpd.conf
 
 EXPOSE 80
 ENTRYPOINT service cron start && \
-    echo "0 0,6,12,18 * * * (cd /var/www/html && echo 'syncing server.php'  && php /var/www/html/server.php && npm run build) >/proc/1/fd/1 2>&1" >> mycron ; \
-    crontab mycron ; php /var/www/html/server.php && npm run build ; apachectl -k restart ; sleep infinity
+    echo "0 0,6,12,18 * * * (cd /var/www/localhost/htdocs && echo 'syncing server.php' && php /var/www/localhost/htdocs/server.php && npm run build) >/proc/1/fd/1 2>&1" >> mycron ; \
+    crontab mycron ; php /var/www/localhost/htdocs/server.php && npm run build ; apachectl -k restart ; sleep infinity

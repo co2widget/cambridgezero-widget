@@ -1,7 +1,7 @@
 var gulp = require("gulp"),
   terser = require("gulp-terser"),
   replace = require("gulp-replace"),
-  sass = require("gulp-sass"),
+  sass = require("gulp-sass")(require('sass')),
   postcss = require("gulp-postcss"),
   cssnano = require("cssnano"),
   rename = require("gulp-rename"),
