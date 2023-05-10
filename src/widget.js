@@ -57,9 +57,11 @@ Promise.resolve(JSON.parse('{{data}}'))
             ${decodeURIComponent(r.chart)}
     			 <div class="czw__graph__labels">\
 					 <div class="czw__graph__labels czw__graph__labels--y">\ 
-					 	 <span class="czw__graph__labels__label czw_400">300 ppm</span>\
-    					 <span class="czw__graph__labels__label czw_300">400 ppm</span>\
-    					 <span class="czw__graph__labels__label czw_380">380 ppm</span>\
+    					 <span class="czw__graph__labels__label czw_300">300 ppm</span>\
+    					 <span class="czw__graph__labels__label czw_400">400 ppm</span>\
+    					 <span class="czw__graph__labels__label czw_20_380">380 ppm</span>\
+					 	 <span class="czw__graph__labels__label czw_20_400">400 ppm</span>\
+    					 <span class="czw__graph__labels__label czw_20_420">420 ppm</span>\
     			 	</div>\ 
     				<div class="czw__graph__labels czw__graph__labels--x">\ 
     					 <span class="czw__graph__labels__label czw__graph__labels__label--first">1000 AD</span>\
@@ -93,6 +95,7 @@ Promise.resolve(JSON.parse('{{data}}'))
     `);
 
     const svg = widget.getElementsByClassName("chart2000")[0];
+    const svg20 = widget.getElementsByClassName("chart20")[0];
 
     // define last year
     let end = new Date().getFullYear() - 1;
@@ -119,10 +122,11 @@ Promise.resolve(JSON.parse('{{data}}'))
         widget.getElementsByClassName("czw__graph__latest")[0].style.visibility =
           "visible";
         widget.getElementsByClassName("chart20")[0].style.visibility = "hidden";
+        widget.getElementsByClassName("czw_300")[0].style.visibility = "visible";
         widget.getElementsByClassName("czw_400")[0].style.visibility = "visible";
-        widget.getElementsByClassName("czw_380")[0].style.visibility ="hidden";
-        widget.getElementsByClassName("czw_300")[0].style.bottom =
-          (parseInt(y300.getAttribute("y1")) / height) * 100 + "%";
+        widget.getElementsByClassName("czw_20_380")[0].style.visibility ="hidden";
+        widget.getElementsByClassName("czw_20_400")[0].style.visibility ="hidden";
+        widget.getElementsByClassName("czw_20_420")[0].style.visibility ="hidden";
         widget.getElementsByClassName(
           "czw__graph__labels__label--first"
         )[0].innerHTML = "1000 AD";
@@ -143,10 +147,11 @@ Promise.resolve(JSON.parse('{{data}}'))
           "hidden";
         widget.getElementsByClassName("chart20")[0].style.visibility =
           "visible";
-        widget.getElementsByClassName("czw_380")[0].style.visibility = "visible"
-        widget.getElementsByClassName("czw_400")[0].style.visibility = "hidden"; //the 400 and 300 class names seem to be the wrong way around?
-        widget.getElementsByClassName("czw_380")[0].style.bottom = "17%"; // would be good to make this calculated from the data...
-        widget.getElementsByClassName("czw_300")[0].style.bottom = (parseInt(y300.getAttribute("y1")) / height) * 80 + "%";
+        widget.getElementsByClassName("czw_20_380")[0].style.visibility = "visible"
+        widget.getElementsByClassName("czw_20_400")[0].style.visibility = "visible"
+        widget.getElementsByClassName("czw_20_420")[0].style.visibility = "visible"
+        widget.getElementsByClassName("czw_300")[0].style.visibility = "hidden";
+        widget.getElementsByClassName("czw_400")[0].style.visibility = "hidden";
         widget.getElementsByClassName(
           "czw__graph__labels__label--first"
         )[0].innerHTML = start;
@@ -161,14 +166,24 @@ Promise.resolve(JSON.parse('{{data}}'))
 
     const y400 = svg.getElementsByClassName("y400")[0];
     const y300 = svg.getElementsByClassName("y300")[0];
+    const y380h = parseFloat(svg20.getElementsByClassName("chart20__380")[0].getAttribute("y"));
+    const y400h = parseFloat(svg20.getElementsByClassName("chart20__400")[0].getAttribute("y"));
+    const y420h = parseFloat(svg20.getElementsByClassName("chart20__420")[0].getAttribute("y"));
 
+    console.log("y380h", y380h, "y400h", y400h, "y420h", y420h)
     const height = parseInt(svg.dataset.height);
 
-    widget.getElementsByClassName("czw_300")[0].style.bottom =
+    widget.getElementsByClassName("czw_300")[0].style.top =
       (parseInt(y300.getAttribute("y1")) / height) * 100 + "%";
-    widget.getElementsByClassName("czw_400")[0].style.bottom =
+    widget.getElementsByClassName("czw_400")[0].style.top =
       (parseInt(y400.getAttribute("y1")) / height) * 100 + "%";
-    widget.getElementsByClassName("czw_380")[0].style.visibility ="hidden";
+
+    widget.getElementsByClassName("czw_20_380")[0].style.bottom = (y380h * 100) -5 + "%"
+    widget.getElementsByClassName("czw_20_400")[0].style.bottom = (y400h * 100) -5 + "%"
+    widget.getElementsByClassName("czw_20_420")[0].style.bottom = (y420h * 100) -5 + "%";
+    widget.getElementsByClassName("czw_20_380")[0].style.visibility ="hidden";
+    widget.getElementsByClassName("czw_20_400")[0].style.visibility ="hidden";
+    widget.getElementsByClassName("czw_20_420")[0].style.visibility ="hidden";
   })
   .catch(function (e) {
     // Handle error responses

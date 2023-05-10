@@ -231,11 +231,12 @@ class Import {
 		reset($points);
 
 		$x = 1; // start at 1 to fit on graph - needs a look
+		$h = 10 + $last - $first;
 
 		$polyline = [];
 		foreach ($points as $point) {
 			// $y = $height - ($point['avg'] - $first);
-			$y = (($point['avg'] - $first) / ($last - $first));
+			$y = (($point['avg'] - $first) / $h);
 			$y = $y * 100;
 			$left = ((($x / 20) * 5) * 20);
 			$bottom = $y;
@@ -243,15 +244,17 @@ class Import {
 			$x++;
 		}
 
-		$y400 = ((400 - $first) / ($last - $first));
-		$y380 = ((380 - $first) / ($last - $first));
+		$y420 = ((420 - $first) / $h);
+		$y400 = ((400 - $first) / $h);
+		$y380 = ((380 - $first) / $h);
 
 		ob_start(); ?>
         <div class="chart20">
         <div class="chart20__xaxis"></div>
         <div class="chart20__yaxis"></div>
-        <div class="chart20__400" style="bottom:<?= $y400 * 100; ?>%"></div>
-        <div class="chart20__380" style="bottom:<?= $y380 * 100; ?>%"></div>
+        <div class="chart20__420" style="bottom:<?= $y420 * 100; ?>%" y="<?=$y420?>"></div>
+        <div class="chart20__400" style="bottom:<?= $y400 * 100; ?>%" y="<?=$y400?>"></div>
+        <div class="chart20__380" style="bottom:<?= $y380 * 100; ?>%" y="<?=$y380?>"></div>
 		<?= implode(' ', $polyline); ?>
         </div><?php
 		return str_replace('+', ' ', urlencode(ob_get_clean()));
