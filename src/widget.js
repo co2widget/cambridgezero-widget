@@ -60,7 +60,7 @@ Promise.resolve(JSON.parse('{{data}}'))
     					 <span class="czw__graph__labels__label czw_300">300 ppm</span>\
     					 <span class="czw__graph__labels__label czw_400">400 ppm</span>\
     					 <span class="czw__graph__labels__label czw_20_380">380 ppm</span>\
-					 	 <span class="czw__graph__labels__label czw_20_400">400 ppm</span>\
+    					 <span class="czw__graph__labels__label czw_20_400">400 ppm</span>\
     					 <span class="czw__graph__labels__label czw_20_420">420 ppm</span>\
     			 	</div>\ 
     				<div class="czw__graph__labels czw__graph__labels--x">\ 
