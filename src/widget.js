@@ -98,7 +98,7 @@ Promise.resolve(JSON.parse('{{data}}'))
     const svg20 = widget.getElementsByClassName("chart20")[0];
 
     // define last year
-    let end = new Date().getFullYear() - 1;
+    let end = new Date().getFullYear();
     let mid = end - 10;
     let start = end - 19;
 

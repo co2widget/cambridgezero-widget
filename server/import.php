@@ -218,7 +218,7 @@ class Import {
 		$currentYear = Import::getYear(new DateTimeImmutable());
 
 		$points = array_map(function ($y) use ($currentYear, $data) {
-			$year = $currentYear + $y - 20;
+			$year = $currentYear + $y - 19;
 			return [
 				'year' => $year,
 				'avg' => Import::yearAvg($data, $year)
@@ -240,7 +240,8 @@ class Import {
 			$y = $y * 100;
 			$left = ((($x / 20) * 5) * 20);
 			$bottom = $y;
-			$polyline[] = "<div class=\"chart20__dot\" style=\"left:${left}%;bottom:${bottom}%\" data-avg=\"${point['avg']}\" data-year=\"${point['year']}\"></div>";
+			$tooltip = $point['year'] == $currentYear ? " title='incomplete data for current year'" : '';
+			$polyline[] = "<div class=\"chart20__dot\" style=\"left:${left}%;bottom:${bottom}%\" data-avg=\"${point['avg']}\" data-year=\"${point['year']}\"${tooltip}></div>";
 			$x++;
 		}
 
