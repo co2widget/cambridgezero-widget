@@ -4,10 +4,14 @@ WORKDIR /var/www
 RUN apk add apache2 apache2-ctl busybox-extras curl php php-curl php-json
 RUN rm -rf /var/www/html /var/www/localhost/htdocs && mkdir /var/www/localhost/htdocs
 WORKDIR /var/www/localhost/htdocs
-# Add the application source code
-ADD . .
+# Add dependency files first for better caching
+ADD yarn.lock .
+ADD gulpfile.js .
+ADD package.json .
 # Fetch npm deps
 RUN npm i -g gulp && yarn install
+# Add the application source code
+ADD . .
 # Build initial data
 RUN php server.php
 RUN chmod 777 /var/www/localhost/htdocs/build && node_modules/.bin/gulp

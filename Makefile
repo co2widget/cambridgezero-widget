@@ -6,4 +6,4 @@ deploy: build-image
 
 # runs on port 82
 run-locally: build-image
-	docker run -d -p82:80 quay.io/hughsimpson/co2widget:latest
+	@(docker rm -f co2widget || echo no running image) && docker run -d -p82:80 --name=co2widget quay.io/hughsimpson/co2widget:latest
