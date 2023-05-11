@@ -1,4 +1,4 @@
-FROM node:16-alpine
+FROM node:20-alpine
 # Install apache2, php, and required libs for both
 WORKDIR /var/www
 RUN apk add apache2 apache2-ctl busybox-extras curl php php-curl php-json
