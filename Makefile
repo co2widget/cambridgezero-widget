@@ -1,5 +1,5 @@
 build-image:
-	docker build . -t quay.io/hughsimpson/co2widget:latest
+	docker buildx build --platform linux/amd64 . -t quay.io/hughsimpson/co2widget:latest --load
 
 deploy: build-image
 	docker push quay.io/hughsimpson/co2widget:latest
