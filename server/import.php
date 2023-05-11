@@ -130,12 +130,21 @@ class Import {
 		return $char . $change;
 	}
 
+	private static function extrapolateToCurrentYear($data, $currentYear) {
+		$twoYearsAgo = Import::yearAvg($data, $currentYear - 2);
+		$oneYearAgo = Import::yearAvg($data, $currentYear - 1);
+		return $oneYearAgo + ($oneYearAgo - $twoYearsAgo);
+	}
 	private static function yearAvg($data, $year) {
-		$startDate = new DateTimeImmutable($year . "-01-01");
+		$currentYear = date("Y");
+		$isCurrentYear = $year == $currentYear;
+        if ($isCurrentYear) echo "calculating avg for current year\n";
+        $startDate = new DateTimeImmutable($year . "-01-01");
 		$endDate = new DateTimeImmutable($year . "-12-31");
 		$points = Import::range($data, $startDate, $endDate);
-		if (empty($points)) {
-			// If no data points for the target year, use linear interpolation between the two closest data points
+		$thisYearAvg = null;
+        // If no data points for the target year, use linear interpolation between the two closest data points
+        if (empty($points)) {
 			$previousYears = array_filter($data, function ($k) use ($year, $startDate) {
 				return $k['date'] <= $startDate;
 			});
@@ -145,20 +154,36 @@ class Import {
 			$nextYears = array_filter($data, function ($k) use ($year, $endDate) {
 				return $k['date'] >= $endDate;
 			});
-			// Have to fail here if no years exist in data after target year
-			if (empty($previousYears)) Import::err("Unable to find any data for years after $year");
-			$nextYear = array_values($nextYears)[0];
-			return (
-					($nextYear['value'] * ($year - Import::getYear($previousYear['date']))) +
-					($previousYear['value'] * (Import::getYear($nextYear['date']) - $year))
-				) / (Import::getYear($nextYear['date']) - Import::getYear($previousYear['date']));
+			// Have to fail here if no years exist in data after target year -- unless year is current year
+			if (empty($nextYears)) {
+				if ($isCurrentYear) {
+                    echo "No data for year-to-date - extrapolating value from last two years\n";
+                    $thisYearAvg = Import::extrapolateToCurrentYear($data, $currentYear);
+                }
+				else Import::err("Unable to find any data for years after $year");
+			} else {
+				$nextYear = array_values($nextYears)[0];
+				$thisYearAvg = (
+						($nextYear['value'] * ($year - Import::getYear($previousYear['date']))) +
+						($previousYear['value'] * (Import::getYear($nextYear['date']) - $year))
+					) / (Import::getYear($nextYear['date']) - Import::getYear($previousYear['date']));
+			}
 		} else {
 			// otherwise just return the average
 			$floats = array_map(function ($x) {
 				return $x['value'];
 			}, $points);
-			return Import::mean($floats);
+			$thisYearAvg = Import::mean($floats);
 		}
+		if ($isCurrentYear) {
+            if (date_format($endDate, "m") < 5) {
+                echo "Projecting current year from last 2\n";
+                return Import::extrapolateToCurrentYear($data, $currentYear);
+            } else {
+                echo "Using year-to-date average\n";
+                return $thisYearAvg;
+            }
+		} else return $thisYearAvg;
 	}
 
 	public static function getYear($date): int {
@@ -218,7 +243,7 @@ class Import {
 		$currentYear = Import::getYear(new DateTimeImmutable());
 
 		$points = array_map(function ($y) use ($currentYear, $data) {
-			$year = $currentYear + $y - 20;
+			$year = $currentYear + $y - 19;
 			return [
 				'year' => $year,
 				'avg' => Import::yearAvg($data, $year)
@@ -240,7 +265,8 @@ class Import {
 			$y = $y * 100;
 			$left = ((($x / 20) * 5) * 20);
 			$bottom = $y;
-			$polyline[] = "<div class=\"chart20__dot\" style=\"left:${left}%;bottom:${bottom}%\" data-avg=\"${point['avg']}\" data-year=\"${point['year']}\"></div>";
+			$tooltip = $point['year'] == $currentYear ? " title='incomplete data for current year'" : '';
+			$polyline[] = "<div class=\"chart20__dot\" style=\"left:${left}%;bottom:${bottom}%\" data-avg=\"${point['avg']}\" data-year=\"${point['year']}\"${tooltip}></div>";
 			$x++;
 		}
 
